@@ -22,6 +22,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'role',
+        'address',
+        'status',
+        'tanggal_tagihan',
     ];
 
     /**
@@ -45,5 +50,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    // Relasi ke tabel Package (yang sudah Anda tambahkan sebelumnya)
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id');
+    }
+
+    // TAMBAHKAN KODE INI: Relasi ke tabel Invoice (Tagihan)
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class, 'user_id');
+    }
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'user_id');
     }
 }
