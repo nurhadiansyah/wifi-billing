@@ -56,6 +56,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Tagihan Massal:
     Route::post('/tagihan/generate-bulk', [App\Http\Controllers\Admin\InvoiceController::class, 'generateBulk'])->name('tagihan.generateBulk');
     
+    // WhatsApp Reminder:
+    Route::post('/tagihan/wa-bulk', [App\Http\Controllers\Admin\InvoiceController::class, 'sendBulkWaReminder'])->name('tagihan.waBulk');
+    Route::post('/tagihan/{id}/wa', [App\Http\Controllers\Admin\InvoiceController::class, 'sendWaReminder'])->name('tagihan.wa');
+    
     Route::put('/tagihan/{id}/lunas', [App\Http\Controllers\Admin\InvoiceController::class, 'markAsPaid'])->name('tagihan.paid');
     Route::delete('/tagihan/{id}', [App\Http\Controllers\Admin\InvoiceController::class, 'destroy'])->name('tagihan.destroy');
 

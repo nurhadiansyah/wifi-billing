@@ -24,9 +24,15 @@
 <div class="card">
     <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
         <h5 class="mb-0">Daftar Tagihan Bulanan</h5>
-        <div>
-            <button type="button" class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#modalGenerateBulk">
-                <i class='bx bx-bolt-circle me-1'></i> Buat Tagihan Otomatis (Massal)
+        <div class="d-flex gap-2 flex-wrap">
+            <form action="{{ route('admin.tagihan.waBulk') }}" method="POST" class="m-0" onsubmit="return confirm('Yakin ingin mengirim pesan WhatsApp ke SEMUA pelanggan yang belum lunas? Pastikan token Whatbizz valid.');">
+                @csrf
+                <button type="submit" class="btn btn-info">
+                    <i class='bx bxl-whatsapp me-1'></i> Broadcast WA
+                </button>
+            </form>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGenerateBulk">
+                <i class='bx bx-bolt-circle me-1'></i> Buat Tagihan (Massal)
             </button>
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
                 <i class='bx bx-plus me-1'></i> Buat Tagihan Satuan
@@ -62,6 +68,13 @@
                         </td>
                         <td>
                             @if($invoice->status == 'unpaid')
+                                <form action="{{ route('admin.tagihan.wa', $invoice->id) }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-icon btn-outline-info" title="Kirim WA Pengingat">
+                                        <i class="bx bxl-whatsapp"></i>
+                                    </button>
+                                </form>
+
                                 <form action="{{ route('admin.tagihan.paid', $invoice->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('PUT')
