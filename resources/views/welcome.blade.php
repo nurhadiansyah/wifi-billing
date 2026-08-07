@@ -121,15 +121,11 @@
 						<div class="container">
 							<div class="row">
 								<div class="left col-12 col-sm-12 col-md-7">
-									<h1 class="ez-animate" data-animation="fadeInLeft">Perfect app landing page for your app.</h1>
-									<p class="ez-animate" data-animation="fadeInLeft">Purchase our premium quality complete landing page template.</p>
-									<ul>
-										<li><a href="#"><img class="img-fluid ez-animate" src="{{ asset('assets1/images/img-appstore.png') }}" alt="Appcraft" data-animation="fadeInUp"></a></li>
-										<li><a href="#"><img class="img-fluid ez-animate" src="{{ asset('assets1/images/img-googleplay.png') }}" alt="Appcraft" data-animation="fadeInUp"></a></li>
-									</ul>
+									<h1 class="ez-animate" data-animation="fadeInLeft">Internet Cepat & Tanpa Batas dari DreamNet.</h1>
+									<p class="ez-animate" data-animation="fadeInLeft">Nikmati koneksi internet unlimited yang stabil dan terjangkau untuk kebutuhan rumah dan bisnis Anda. Bersama CV Laju Bersama Makmur, kami hadir memberikan solusi konektivitas terbaik!</p>
 								</div>
 								<div class="right ez-animate col-12 col-sm-12 col-md-5" data-animation="fadeInRight">
-									<img class="img-fluid" src="{{ asset('assets1/images/img-1.png') }}" alt="Appcraft">
+									
 								</div>
 							</div>
 						</div>
@@ -140,46 +136,13 @@
 		</div>
 	</div>
 	<!-- /.Section Slider 1 -->
-	<!-- Section Clients 1 -->
-	<div id="section-clients1">
-		<div class="container">
-			<div class="row">
-				<!-- Item -->
-				<div class="item col">
-					<a href="#"><img src="{{ asset('assets1/images/img-client1.png') }}" alt="Appcraft"></a>
-				</div>
-				<!-- /.Item -->
-				<!-- Item -->
-				<div class="item col">
-					<a href="#"><img src="{{ asset('assets1/images/img-client2.png') }}" alt="Appcraft"></a>
-				</div>
-				<!-- /.Item -->
-				<!-- Item -->
-				<div class="item col">
-					<a href="#"><img src="{{ asset('assets1/images/img-client3.png') }}" alt="Appcraft"></a>
-				</div>
-				<!-- /.Item -->
-				<!-- Item -->
-				<div class="item col">
-					<a href="#"><img src="{{ asset('assets1/images/img-client4.png') }}" alt="Appcraft"></a>
-				</div>
-				<!-- /.Item -->
-				<!-- Item -->
-				<div class="item col">
-					<a href="#"><img src="{{ asset('assets1/images/img-client5.png') }}" alt="Appcraft"></a>
-				</div>
-				<!-- /.Item -->
-			</div>
-		</div>
-	</div>
-	<!-- /.Section Clients 1 -->
 	<!-- Section Features 1 -->
 	<div id="section-features1">
 		<div class="container">
 			<div class="row">
 				<div class="left">
-					<h6 class="clscheme">Checkout features</h6>
-					<h2>The only app you will need</h2>
+					<h6 class="clscheme">Fitur Unggulan</h6>
+					<h2>Mengapa Memilih DreamNet?</h2>
 					<ul>
 						<li><i class="fa fa-long-arrow-left clscheme"></i></li>
 						<li><i class="fa fa-long-arrow-right clscheme"></i></li>
@@ -192,8 +155,8 @@
 							<div class="swiper-slide">
 								<div class="item">
 									<img src="{{ asset('assets1/images/img-icon1.png') }}" alt="Appcraft">
-									<h3>Free Caliing Service</h3>
-									<p>Direct mailing research development buyer iPad validation startup social proof learning curve user experience analytics</p>
+									<h3>Kecepatan Stabil</h3>
+									<p>Koneksi internet cepat dan stabil tanpa hambatan, cocok untuk kebutuhan streaming, bekerja, hingga bermain game online.</p>
 								</div>
 							</div>
 							<!-- /.Item -->
@@ -201,8 +164,8 @@
 							<div class="swiper-slide">
 								<div class="item">
 									<img src="{{ asset('assets1/images/img-icon2.png') }}" alt="Appcraft">
-									<h3>Free Caliing Service</h3>
-									<p>Direct mailing research development buyer iPad validation startup social proof learning curve user experience analytics</p>
+									<h3>Tanpa Batas Kuota</h3>
+									<p>Internet benar-benar unlimited tanpa FUP (Fair Usage Policy). Nikmati akses sebebasnya untuk seluruh keluarga Anda setiap hari.</p>
 								</div>
 							</div>
 							<!-- /.Item -->
@@ -210,8 +173,8 @@
 							<div class="swiper-slide">
 								<div class="item">
 									<img src="{{ asset('assets1/images/img-icon3.png') }}" alt="Appcraft">
-									<h3>Free Caliing Service</h3>
-									<p>Direct mailing research development buyer iPad validation startup social proof learning curve user experience analytics</p>
+									<h3>Dukungan 24/7</h3>
+									<p>Tim teknisi profesional kami selalu siap membantu dan merespons keluhan Anda kapan saja secara cepat jika terjadi gangguan koneksi.</p>
 								</div>
 							</div>
 							<!-- /.Item -->
@@ -219,8 +182,8 @@
 							<div class="swiper-slide">
 								<div class="item">
 									<img src="{{ asset('assets1/images/img-icon1.png') }}" alt="Appcraft">
-									<h3>Free Caliing Service</h3>
-									<p>Direct mailing research development buyer iPad validation startup social proof learning curve user experience analytics</p>
+									<h3>Harga Terjangkau</h3>
+									<p>Berbagai pilihan paket internet dengan harga kompetitif dan jujur tanpa ada biaya tersembunyi yang memberatkan Anda.</p>
 								</div>
 							</div>
 							<!-- /.Item -->
@@ -228,8 +191,8 @@
 							<div class="swiper-slide">
 								<div class="item">
 									<img src="{{ asset('assets1/images/img-icon2.png') }}" alt="Appcraft">
-									<h3>Free Caliing Service</h3>
-									<p>Direct mailing research development buyer iPad validation startup social proof learning curve user experience analytics</p>
+									<h3>Instalasi Cepat</h3>
+									<p>Proses pemasangan perangkat dan aktivasi internet yang cepat sehingga Anda bisa segera menikmati koneksi dari DreamNet.</p>
 								</div>
 							</div>
 							<!-- /.Item -->
@@ -237,8 +200,8 @@
 							<div class="swiper-slide">
 								<div class="item">
 									<img src="{{ asset('assets1/images/img-icon3.png') }}" alt="Appcraft">
-									<h3>Free Caliing Service</h3>
-									<p>Direct mailing research development buyer iPad validation startup social proof learning curve user experience analytics</p>
+									<h3>Jangkauan Luas</h3>
+									<p>Infrastruktur jaringan yang terus berkembang untuk memastikan koneksi yang lancar hingga ke berbagai wilayah dan pelosok.</p>
 								</div>
 							</div>
 							<!-- /.Item -->
@@ -249,120 +212,7 @@
 		</div>
 	</div>
 	<!-- /.Section Features 1 -->
-	<!-- Features Wrap -->
-	<div class="features-wrap">
-		<!-- Section Features 2 -->
-		<div id="section-features2">
-			<div class="container">
-				<div class="row">
-					<div class="left col-sm-12 col-md-6">
-						<div class="img-container">
-							<img class="circleicon1 ez-animate" src="{{ asset('assets1/images/img-circleicon1.png') }}" alt="Appcraft" data-animation="fadeInUp">
-							<img class="img-fluid ez-animate" src="{{ asset('assets1/images/img-2.png') }}" alt="Appcraft" data-animation="fadeInLeft">
-						</div>
-					</div>
-					<div class="right my-auto col-sm-12 col-md-6">
-						<h6 class="clscheme">01 – Add new task</h6>
-						<h2>Everything starts with the task</h2>
-						<p>There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form, by injected humour lorem ipsum is simply free text in the</p>
-						<a href="#" class="btn-2 shadow1 style3 bgscheme">GET STARTED NOW</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /.Section Features 2 -->
-		<!-- Section Features 2 -->
-		<div class="section-features2">
-			<div class="container">
-				<div class="row">
-					<div class="right my-auto col-sm-12 col-md-6">
-						<h6 class="clscheme">01 – Add new task</h6>
-						<h2>Everything starts with the task</h2>
-						<p>There are many variations of passages of lorem ipsum available, but the majority have suffered alteration in some form, by injected humour lorem ipsum is simply free text in the</p>
-						<a href="#" class="btn-2 shadow1 style3 bgscheme">GET STARTED NOW</a>
-					</div>
-					<div class="left col-sm-12 col-md-6">
-						<div class="img-container">
-							<img class="circleicon1 ez-animate" src="{{ asset('assets1/images/img-circleicon2.png') }}" alt="Appcraft" data-animation="fadeInUp">
-							<img class="img-fluid ez-animate" src="{{ asset('assets1/images/img-3.png') }}" alt="Appcraft" data-animation="fadeInRight">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /.Section Features 2 -->
-	</div>
-	<!-- /.Features Wrap -->
-	<!-- Section APP Screen 1 -->
-	<div id="section-appscreen1">
-		<div class="container">
-			<div class="row">
-				<div class="title1 col-12">
-					<h6 class="clscheme">APP SCREEN</h6>
-					<h2>How our app looks like</h2>
-				</div>
-			</div>
-		</div>
-		<div class="container appscreen1">
-			<div class="row">
-				<div class="owl-carousel owl-theme">
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen1.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen2.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen3.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen4.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen5.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen1.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen1.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen2.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen3.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img class="img-fluid" src="{{ asset('assets1/images/img-screen4.jpg') }}" alt="Appcraft">
-					</div>
-					<!-- /.Item -->
-				</div>
-				<!-- Add Pagination -->
-				<div class="swiper-pagination"></div>
-			</div>
-		</div>
-	</div>
-	<!-- /.Section APP Sreen 1 -->
+
 	<!-- Section Pricingn 1 -->
 	<div id="section-pricing1">
 		<div class="container">
@@ -372,53 +222,70 @@
 					<h2>Built for your projects</h2>
 				</div>
 				<!-- Item -->
-				<div class="item ez-animate col-md-4" data-animation="fadeInLeft">
-					<div class="label bgsolidscheme">REGULAR</div>
-					<div class="title">Startup Plan</div>
+				<div class="item ez-animate col-md-6 col-lg-3 mb-4" data-animation="fadeInLeft">
+					<div class="label bgsolidscheme">HEMAT</div>
+					<div class="title">10 Mbps</div>
 					<ul>
-						<li>10 pages</li>
-						<li>500 gb storage</li>
-						<li>10 sdd Database</li>
-						<li>Free coustom domain</li>
-						<li>24/7 free support</li>
+						<li>Internet Unlimited</li>
+						<li>Stabil & Cepat</li>
+						<li>Cocok untuk 2-3 Perangkat</li>
+						<li>Browsing Lancar</li>
+						<li>Bantuan 24/7</li>
 					</ul>
-					<div class="price clscheme"><span class="currency">$</span> 25 <span class="duration">/m</span></div>
+					<div class="price clscheme"><span class="currency">Rp</span> 150 <span class="duration">Rb/bln</span></div>
 					<div class="cta">
-						<a href="{{ route('login') }}" class="btn-1 shadow1 style3 bgscheme">Login</a>
+						<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20tertarik%20berlangganan%20paket%2010%20Mbps" class="btn-1 shadow1 style3 bgscheme">Daftar</a>
 					</div>
 				</div>
 				<!-- /.Item -->
 				<!-- Item -->
-				<div class="item ez-animate active selected col-md-4" data-animation="fadeInUp">
-					<div class="label bgsolidscheme">BEST PICKS</div>
-					<div class="title">Startup Plan</div>
+				<div class="item ez-animate active selected col-md-6 col-lg-3 mb-4" data-animation="fadeInUp">
+					<div class="label bgsolidscheme">TERLARIS</div>
+					<div class="title">15 Mbps</div>
 					<ul>
-						<li>10 pages</li>
-						<li>500 gb storage</li>
-						<li>10 sdd Database</li>
-						<li>Free coustom domain</li>
-						<li>24/7 free support</li>
+						<li>Internet Unlimited</li>
+						<li>Stabil & Cepat</li>
+						<li>Cocok untuk 4-5 Perangkat</li>
+						<li>Streaming Lancar</li>
+						<li>Bantuan 24/7</li>
 					</ul>
-					<div class="price clscheme"><span class="currency">$</span> 35 <span class="duration">/m</span></div>
+					<div class="price clscheme"><span class="currency">Rp</span> 180 <span class="duration">Rb/bln</span></div>
 					<div class="cta">
-						<a href="{{ route('login') }}" class="btn-1 shadow1 style3 bgscheme">Login</a>
+						<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20tertarik%20berlangganan%20paket%2015%20Mbps" class="btn-1 shadow1 style3 bgscheme">Daftar</a>
 					</div>
 				</div>
 				<!-- /.Item -->
 				<!-- Item -->
-				<div class="item ez-animate col-md-4" data-animation="fadeInRight">
-					<div class="label bgsolidscheme">PLATINUM</div>
-					<div class="title">Startup Plan</div>
+				<div class="item ez-animate col-md-6 col-lg-3 mb-4" data-animation="fadeInRight">
+					<div class="label bgsolidscheme">KELUARGA</div>
+					<div class="title">20 Mbps</div>
 					<ul>
-						<li>10 pages</li>
-						<li>500 gb storage</li>
-						<li>10 sdd Database</li>
-						<li>Free coustom domain</li>
-						<li>24/7 free support</li>
+						<li>Internet Unlimited</li>
+						<li>Stabil & Cepat</li>
+						<li>Keluarga Besar</li>
+						<li>Mendukung Smart TV</li>
+						<li>Bantuan 24/7</li>
 					</ul>
-					<div class="price clscheme"><span class="currency">$</span> 45 <span class="duration">/m</span></div>
+					<div class="price clscheme"><span class="currency">Rp</span> 230 <span class="duration">Rb/bln</span></div>
 					<div class="cta">
-						<a href="{{ route('login') }}" class="btn-1 shadow1 style3 bgscheme">Login</a>
+						<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20tertarik%20berlangganan%20paket%2020%20Mbps" class="btn-1 shadow1 style3 bgscheme">Daftar</a>
+					</div>
+				</div>
+				<!-- /.Item -->
+				<!-- Item -->
+				<div class="item ez-animate col-md-6 col-lg-3 mb-4" data-animation="fadeInRight">
+					<div class="label bgsolidscheme">PREMIUM</div>
+					<div class="title">30 Mbps</div>
+					<ul>
+						<li>Internet Unlimited</li>
+						<li>Sangat Cepat</li>
+						<li>Banyak Perangkat</li>
+						<li>Gaming & Streaming 4K</li>
+						<li>Bantuan Prioritas</li>
+					</ul>
+					<div class="price clscheme"><span class="currency">Rp</span> 250 <span class="duration">Rb/bln</span></div>
+					<div class="cta">
+						<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20tertarik%20berlangganan%20paket%2030%20Mbps" class="btn-1 shadow1 style3 bgscheme">Daftar</a>
 					</div>
 				</div>
 				<!-- /.Item -->
@@ -427,140 +294,26 @@
 	</div>
 	<!-- /.Section Pricingn 1 -->
 	<!-- Section Testimonial 1 -->
-	<div id="section-testimonial1">
-		<div class="container">
-			<div class="row">
-				<div class="title1 col-12">
-					<h6 class="clscheme">USER REVIEWS</h6>
-					<h2>What users say about us</h2>
-				</div>
-			</div>
-		</div>
-		<div class="container testimonial1">
-			<img class="img-fluid bg-testimonial" src="{{ asset('assets1/images/bg-testimonial1.jpg') }}" alt="Appcraft">
-			<div class="row">
-				<div class="owl-carousel owl-theme">
-					<!-- Item -->
-					<div class="item">
-						<img src="{{ asset('assets1/images/img-testimonial1.png') }}" alt="Appcraft">
-						<h3>Arya Stark</h3>
-						<h4>Client</h4>
-						<ul>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-						</ul>
-						<p>As part of the classes I teach, I task my students with preparing a lot of presentations. To save time & reduce boredom, I occasionally have only a pick who presents the good work!</p>
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img src="{{ asset('assets1/images/img-testimonial2.png') }}" alt="Appcraft">
-						<h3>Arya Stark</h3>
-						<h4>Client</h4>
-						<ul>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-						</ul>
-						<p>As part of the classes I teach, I task my students with preparing a lot of presentations. To save time & reduce boredom, I occasionally have only a pick who presents the good work!</p>
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img src="{{ asset('assets1/images/img-testimonial3.png') }}" alt="Appcraft">
-						<h3>Arya Stark</h3>
-						<h4>Client</h4>
-						<ul>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-						</ul>
-						<p>As part of the classes I teach, I task my students with preparing a lot of presentations. To save time & reduce boredom, I occasionally have only a pick who presents the good work!</p>
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img src="{{ asset('assets1/images/img-testimonial1.png') }}" alt="Appcraft">
-						<h3>Arya Stark</h3>
-						<h4>Client</h4>
-						<ul>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-						</ul>
-						<p>As part of the classes I teach, I task my students with preparing a lot of presentations. To save time & reduce boredom, I occasionally have only a pick who presents the good work!</p>
-					</div>
-					<!-- /.Item -->
-					<!-- Item -->
-					<div class="item">
-						<img src="{{ asset('assets1/images/img-testimonial2.png') }}" alt="Appcraft">
-						<h3>Arya Stark</h3>
-						<h4>Client</h4>
-						<ul>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-							<li><i class="fa fa-star"></i></li>
-						</ul>
-						<p>As part of the classes I teach, I task my students with preparing a lot of presentations. To save time & reduce boredom, I occasionally have only a pick who presents the good work!</p>
-					</div>
-					<!-- /.Item -->
-				</div>
-			</div>
-		</div>
-	</div>
 	<!-- /.Section Testimonial 1 -->
 	<!-- Section Subscribe 1 -->
 	<div id="section-subscribe1">
 		<div class="container">
 			<div class="row">
 				<div class="title1 col-12">
-					<h6 class="clscheme">NEWSLETTER</h6>
-					<h2>Subscribe to our newsletter</h2>
+					<h6 class="clscheme">Hubungi Kami</h6>
+					<h2>Hubungi kami untuk lebih lanjut</h2>
 				</div>
-				<div class="form col-12 ez-animate" data-animation="fadeInUp">
-					<form action="#" id="SubscribeForm">
-						<input type="email" name="yourEmail" placeholder="Enter your email address" required="">
-						<button type="submit" class="shadow1 bgscheme">SUBSCRIBE NOW</button>
-					</form>
+				<div class="col-12 ez-animate text-center" data-animation="fadeInUp">
+					<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20ingin%20bertanya%20informasi%20lebih%20lanjut" class="btn-1 shadow1 style3 bgscheme" style="font-size: 18px; padding: 15px 30px; border-radius: 30px; display: inline-block; margin-top: 20px;">
+                        <i class="fa fa-whatsapp fa-lg mr-2"></i> Pesan WhatsApp Admin
+                    </a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- /.Section Subscribe 1 -->
 	<!-- Section Download 1 -->
-	<div id="section-download1">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<h1>Download Today</h1>
-					<p>and get started with a free 1 month trial for your business</p>
-					<ul>
-						<li>
-							<a href="#">
-								<img class="img-fluid ez-animate" src="{{ asset('assets1/images/img-appstore.png') }}" alt="Appcraft" data-animation="fadeInUp">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img class="img-fluid ez-animate" src="{{ asset('assets1/images/img-googleplay.png') }}" alt="Appcraft" data-animation="fadeInUp">
-							</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
+
 	<!-- /.Section Download 1 -->
 	<!-- Section Footer -->
 	<div id="section-footer">
@@ -571,11 +324,10 @@
 						<a href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="max-height: 50px; width: auto;"></a>
 					</div>
 					<div class="right col-md-6">
-						<div class="social-links">
-			                <a href="#"><i class="fa fa-google-plus fa-lg"></i></a>
-			                <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-			                <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
-			                <a href="#"><i class="fa fa-behance fa-lg"></i></a>
+						<div class="social-links d-flex align-items-center justify-content-end">
+                            <span class="mr-3 text-white"><i class="fa fa-phone"></i> Hubungi Kami: </span>
+			                <a href="https://wa.me/6285256486282" title="0852-5648-6282" style="width: auto; padding: 0 10px; font-size: 14px;"><i class="fa fa-whatsapp fa-lg mr-1"></i> 0852-5648-6282</a>
+							<a href="mailto:[EMAIL_ADDRESS]" title="support@dreamnetindonesia.com" style="width: auto; padding: 0 10px; font-size: 14px;"><i class="fa fa-mail fa-lg mr-1"></i>support@dreamnetindonesia.com</a>
 			            </div>
 					</div>
 				</div>
@@ -583,7 +335,7 @@
 		</div>
 		<div class="footer-copyright container-fluid ">
 			<div class="col-12">
-				<p>© 2019 Copyrights <a href="https://themeforest.net/user/puricreative/portfolio">PuriCreative</a></p>
+				<p>© {{ date('Y') }} Copyrights <a href="#">CV Laju Bersama Makmur - DreamNet Indonesia</a></p>
 			</div>
 		</div>
 	</div>
