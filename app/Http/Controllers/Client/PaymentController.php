@@ -115,4 +115,54 @@ class PaymentController extends Controller
 
         return redirect()->route('client.payment.checkout', $id);
     }
+
+    // =================================================================
+    // 4. CALLBACK TRIPAY (WEBHOOK)
+    // =================================================================
+    public function callback(Request $request)
+    {
+        $privateKey = env('TRIPAY_PRIVATE_KEY');
+        
+        $callbackSignature = $request->header('x-callback-signature');
+        $json = $request->getContent();
+        
+        $signature = hash_hmac('sha256', $json, $privateKey);
+
+        if ($signature !== $callbackSignature) {
+            return response()->json(['success' => false, 'message' => 'Invalid signature'], 400);
+        }
+
+        if ('payment_status' !== $request->header('x-callback-event')) {
+            return response()->json(['success' => false, 'message' => 'Unrecognized event, ignored'], 200);
+        }
+
+        $data = json_decode($json);
+
+        if (is_array($data) || is_object($data)) {
+            $merchantRef = $data->merchant_ref;
+            $tripayReference = $data->reference;
+            $status = strtoupper((string) $data->status);
+
+            if ($status === 'PAID') {
+                $invoice = Invoice::where('invoice_number', $merchantRef)
+                                ->where('tripay_reference', $tripayReference)
+                                ->where('status', 'unpaid')
+                                ->first();
+
+                if ($invoice) {
+                    $invoice->update([
+                        'status' => 'paid',
+                        'payment_method' => $data->payment_method ?? 'Tripay Payment'
+                    ]);
+                    
+                    return response()->json(['success' => true]);
+                }
+                return response()->json(['success' => false, 'message' => 'Invoice not found or already paid'], 404);
+            }
+            
+            return response()->json(['success' => true, 'message' => 'Status is not PAID, ignored']);
+        }
+
+        return response()->json(['success' => false, 'message' => 'Invalid data format'], 400);
+    }
 }
