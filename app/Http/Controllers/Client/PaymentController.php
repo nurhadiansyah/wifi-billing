@@ -79,7 +79,8 @@ class PaymentController extends Controller
                     'quantity' => 1,
                 ]
             ],
-            'return_url'     => route('client.tagihan'), 
+            'return_url'     => route('client.tagihan'),
+            'callback_url'   => url('/tripay/callback'),
             'expired_time'   => (time() + (24 * 60 * 60)), 
             'signature'      => $signature
         ];
