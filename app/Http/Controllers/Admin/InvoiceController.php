@@ -123,6 +123,9 @@ class InvoiceController extends Controller
                 'phone' => $target,
                 'message' => $message,
             ]);
+            
+            // Log response API ke dalam storage/logs/laravel.log
+            \Illuminate\Support\Facades\Log::info('Whatbizz Response: ' . $response->body());
 
             return $response->successful();
         } catch (\Exception $e) {
@@ -189,13 +192,17 @@ class InvoiceController extends Controller
                          . "Silakan lakukan pembayaran melalui aplikasi/website kami:\n{$loginUrl}\n\n"
                          . "Abaikan pesan ini jika Anda sudah melakukan pembayaran. Terima kasih atas kerja sama Anda!";
 
-                // Untuk pengiriman massal yang banyak, disarankan menggunakan Queue/Job agar tidak timeout
-                // Tapi untuk saat ini kita jalankan secara sinkron
-                $this->sendWhatbizzMessage($phone, $message);
-                $count++;
+                $apiSuccess = $this->sendWhatbizzMessage($phone, $message);
+                if ($apiSuccess) {
+                    $count++;
+                }
             }
         }
 
-        return redirect()->back()->with('success', "Berhasil memproses pengiriman WhatsApp ke $count pelanggan yang belum lunas.");
+        if ($count > 0) {
+            return redirect()->back()->with('success', "Berhasil memproses pengiriman WhatsApp ke $count pelanggan.");
+        } else {
+            return redirect()->back()->with('error', "Gagal mengirim pesan massal. Pastikan Token Whatbizz di .env valid dan aktif.");
+        }
     }
 }
