@@ -334,8 +334,13 @@
 			</div>
 		</div>
 		<div class="footer-copyright container-fluid ">
-			<div class="col-12">
+			<div class="col-12 text-center">
 				<p>© {{ date('Y') }} Copyrights <a href="#">CV Laju Bersama Makmur - DreamNet Indonesia</a></p>
+				<p class="mt-2" style="font-size: 13px;">
+					<a href="{{ route('privacy') }}" style="color: #bbb;" class="mr-3">Kebijakan Privasi</a> | 
+					<a href="{{ route('about') }}" style="color: #bbb;" class="mx-3">Tentang Kami</a> | 
+					<a href="{{ route('terms') }}" style="color: #bbb;" class="ml-3">Syarat & Ketentuan</a>
+				</p>
 			</div>
 		</div>
 	</div>

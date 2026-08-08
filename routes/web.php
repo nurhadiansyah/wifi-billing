@@ -7,6 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/kebijakan-privasi', function () {
+    return view('privacy');
+})->name('privacy');
+
+Route::get('/tentang-kami', function () {
+    return view('about');
+})->name('about');
+
+Route::get('/syarat-ketentuan', function () {
+    return view('terms');
+})->name('terms');
+
 Route::get('/dashboard', function () {
     $user = auth()->user();
     if ($user->role === 'admin') {
