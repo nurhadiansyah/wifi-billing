@@ -26,9 +26,11 @@ class PaymentController extends Controller
 
         // Ambil daftar metode pembayaran (Channels) dari Tripay
         $apiKey = env('TRIPAY_API_KEY');
+        $mode = env('TRIPAY_MODE', 'sandbox');
+        $baseUrl = $mode === 'production' ? 'https://tripay.co.id/api/' : 'https://tripay.co.id/api-sandbox/';
         
-        // Memanggil API Tripay khusus untuk melihat daftar metode pembayaran (Sandbox)
-        $response = Http::withToken($apiKey)->get('https://tripay.co.id/api-sandbox/merchant/payment-channel');
+        // Memanggil API Tripay khusus untuk melihat daftar metode pembayaran
+        $response = Http::withToken($apiKey)->get($baseUrl . 'merchant/payment-channel');
         $channels = $response->json()['data'] ?? [];
 
         // Tampilkan halaman Blade Anda (Sesuaikan folder view-nya jika berbeda)
@@ -86,7 +88,7 @@ class PaymentController extends Controller
         $response = Http::withToken($apiKey)->post(env('TRIPAY_URL'), $data);
         $result = $response->json();
 
-        if ($result['success'] == true) {
+        if ($response->successful() && isset($result['success']) && $result['success'] == true) {
             // Simpan link dan referensi ke database
             $invoice->update([
                 'tripay_reference' => $result['data']['reference'],
@@ -96,7 +98,8 @@ class PaymentController extends Controller
             // Arahkan ke link pembayaran Tripay
             return redirect($result['data']['checkout_url']);
         } else {
-            return back()->with('error', 'Gagal membuat pembayaran: ' . $result['message']);
+            $errorMessage = $result['message'] ?? 'Terjadi kesalahan saat menghubungi server Tripay.';
+            return back()->with('error', 'Gagal membuat pembayaran: ' . $errorMessage);
         }
     }
 
