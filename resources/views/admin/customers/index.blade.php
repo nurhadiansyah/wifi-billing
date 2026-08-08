@@ -53,6 +53,9 @@
                     <th>Nama Pelanggan</th>
                     <th>Kontak</th>
                     <th>Paket Internet</th>
+                    <th>Router Info</th>
+                    <th>NAS</th>
+                    <th>Tgl Aktivasi</th>
                     <th>Status</th>
                     <th>Tgl Tagihan</th>
                     <th>Aksi</th>
@@ -75,6 +78,13 @@
                                 <span class="badge bg-label-warning">Belum ada paket</span>
                             @endif
                         </td>
+                        <td>
+                            <small>User: <strong>{{ $customer->router_user ?? '-' }}</strong></small><br>
+                            <small>Pass: <strong>{{ $customer->router_password ?? '-' }}</strong></small><br>
+                            <small class="text-muted">Profile: {{ $customer->router_profile ?? '-' }}</small>
+                        </td>
+                        <td>{{ $customer->router_nas ?? '-' }}</td>
+                        <td>{{ $customer->activation_date ? \Carbon\Carbon::parse($customer->activation_date)->format('d/m/Y') : '-' }}</td>
                         <td>
                             @if($customer->status == 'aktif')
                                 <span class="badge bg-label-success">Aktif</span>
@@ -173,7 +183,7 @@
                     </div>
                 @empty
                     <tr>
-                        <td colspan="7" class="text-center py-4">Tidak ada data pelanggan yang ditemukan.</td>
+                        <td colspan="10" class="text-center py-4">Tidak ada data pelanggan yang ditemukan.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -246,8 +256,8 @@
                 @csrf
                 <div class="modal-body">
                     <div class="alert alert-info">
-                        <strong>Perhatian:</strong> Pastikan baris pertama Excel Anda memiliki judul kolom yang persis seperti ini:<br>
-                        <code>nama</code>, <code>email</code>, <code>no_hp</code>, <code>alamat</code>, <code>tanggal_tagihan</code>
+                        <strong>Perhatian:</strong> Pastikan baris pertama Excel Anda memiliki judul kolom persis seperti ini:<br>
+                        <code>no</code>, <code>user</code>, <code>password</code>, <code>profile</code>, <code>nas</code>, <code>Harga Paket</code>, <code>Tanggal Aktivasi</code>, <code>Tanggal Pembayaran</code>, <code>name</code>, <code>phone</code>, <code>address</code>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Upload File Excel (.xlsx / .csv)</label>

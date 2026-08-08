@@ -115,17 +115,108 @@ class CustomerController extends Controller
             'file_excel' => 'required|mimes:xlsx,xls,csv'
         ]);
 
-        $import = new CustomersImport();
-        Excel::import($import, $request->file('file_excel'));
-
-        // Siapkan pesan notifikasi
-        $pesan = "Import Selesai! {$import->berhasil} data berhasil ditambahkan.";
+        $file = $request->file('file_excel');
         
-        // Jika ada yang duplikat, tambahkan peringatan ke dalam pesan
-        if ($import->duplikat > 0) {
-            $namaDouble = implode(', ', $import->namaDuplikat);
-            $pesan .= " Namun, ada {$import->duplikat} data yang dilewati karena duplikat (Nama/Email sudah ada): {$namaDouble}.";
-            return back()->with('success', $pesan); // Bisa pakai warna kuning/warning jika mau
+        $berhasil = 0;
+        $duplikat = 0;
+        $namaDuplikat = [];
+
+        $type = $file->getClientOriginalExtension();
+        $rows = \Spatie\SimpleExcel\SimpleExcelReader::create($file->getRealPath(), $type)->getRows();
+
+        $rows->each(function(array $row) use (&$berhasil, &$duplikat, &$namaDuplikat) {
+            // Bersihkan nama kolom jika ada whitespace
+            $row = array_combine(
+                array_map('trim', array_keys($row)),
+                array_values($row)
+            );
+
+            $router_user = $row['user'] ?? null;
+            $router_password = $row['password'] ?? null;
+            $router_profile = $row['profile'] ?? null;
+            $router_nas = $row['nas'] ?? null;
+            $tgl_aktivasi = $row['Tanggal Aktivasi'] ?? null;
+            $tgl_bayar = $row['Tanggal Pembayaran'] ?? null;
+            $name = $row['name'] ?? null;
+            $phone = $row['phone'] ?? null;
+            $address = $row['address'] ?? null;
+
+            // Jika baris kosong (tidak ada nama & user)
+            if (empty($name) && empty($router_user)) {
+                return;
+            }
+
+            // Generate email dummy karena wajib di tabel users
+            $cleanName = preg_replace('/[^a-zA-Z0-9]/', '', strtolower($name));
+            $email = $router_user ? $router_user . '@client.com' : $cleanName . rand(100, 999) . '@client.com';
+            
+            // Format Tanggal Aktivasi
+            if ($tgl_aktivasi instanceof \DateTimeInterface) {
+                $tgl_aktivasi = $tgl_aktivasi->format('Y-m-d');
+            } elseif (is_string($tgl_aktivasi) && !empty(trim($tgl_aktivasi))) {
+                try {
+                    // Jika formatnya pakai slash (02/08/2026) -> ubah ke dash (02-08-2026) agar dikenali sebagai d-m-Y oleh PHP
+                    $tgl_aktivasi = \Carbon\Carbon::parse(str_replace('/', '-', $tgl_aktivasi))->format('Y-m-d');
+                } catch (\Exception $e) {
+                    $tgl_aktivasi = null; // Abaikan jika gagal parsing formatnya
+                }
+            } else {
+                $tgl_aktivasi = null;
+            }
+
+            // Format Tanggal Pembayaran (bisa jadi DateTime atau String/Float dari Excel)
+            $tagihan_val = null;
+            if (is_numeric($tgl_bayar)) {
+                $tagihan_val = (int)$tgl_bayar;
+            } elseif ($tgl_bayar instanceof \DateTimeInterface) {
+                $tagihan_val = (int)$tgl_bayar->format('d'); // Ambil tanggalnya saja
+            } elseif (is_string($tgl_bayar)) {
+                $tgl_bayar = trim($tgl_bayar);
+                if (is_numeric($tgl_bayar)) {
+                    $tagihan_val = (int)$tgl_bayar;
+                }
+            }
+
+            // Cek duplikat berdasarkan router_user atau name
+            $existingUser = null;
+            if ($router_user) {
+                $existingUser = User::where('router_user', $router_user)->first();
+            }
+            if (!$existingUser && $name) {
+                $existingUser = User::where('name', $name)->first();
+            }
+            
+            if ($existingUser) {
+                $duplikat++;
+                $namaDuplikat[] = $name ?: $router_user;
+                return;
+            }
+
+            User::create([
+                'name' => $name ?: 'No Name',
+                'email' => $email,
+                'phone' => $phone,
+                'address' => $address,
+                'router_user' => $router_user,
+                'router_password' => $router_password,
+                'router_profile' => $router_profile,
+                'router_nas' => $router_nas,
+                'activation_date' => $tgl_aktivasi,
+                'tanggal_tagihan' => $tagihan_val,
+                'password' => bcrypt('12345678'), // Default password aplikasi
+                'role' => 'client',
+                'status' => 'aktif',
+            ]);
+
+            $berhasil++;
+        });
+
+        $pesan = "Import Selesai! {$berhasil} data berhasil ditambahkan.";
+        
+        if ($duplikat > 0) {
+            $namaDouble = implode(', ', array_slice($namaDuplikat, 0, 5));
+            $more = count($namaDuplikat) > 5 ? ' dan ' . (count($namaDuplikat) - 5) . ' lainnya' : '';
+            $pesan .= " Namun, ada {$duplikat} data yang dilewati karena duplikat: {$namaDouble}{$more}.";
         }
 
         return back()->with('success', $pesan);

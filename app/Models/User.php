@@ -23,10 +23,15 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
+        'router_user',
+        'router_password',
+        'router_profile',
+        'router_nas',
         'role',
         'address',
         'status',
         'tanggal_tagihan',
+        'activation_date',
     ];
 
     /**
