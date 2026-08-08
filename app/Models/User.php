@@ -30,6 +30,7 @@ class User extends Authenticatable
         'role',
         'address',
         'status',
+        'package_id',
         'tanggal_tagihan',
         'activation_date',
     ];

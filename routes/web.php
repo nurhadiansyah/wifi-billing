@@ -27,9 +27,7 @@ require __DIR__.'/auth.php';
 // RUTE KHUSUS ADMIN
 // ==========================================
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard'); // Nanti kita buat file view ini
-    })->name('dashboard');
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
 
     // halaman data pelanggan
     Route::get('/pelanggan', [App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('pelanggan.index');

@@ -109,6 +109,14 @@
                             <span class="menu-header-text">Manajemen Sistem</span>
                         </li>
 
+                        <!-- Menu Dashboard Admin -->
+                        <li class="menu-item {{ request()->routeIs('admin.dashboard') || request()->routeIs('dashboard') ? 'active' : '' }}">
+                            <a href="{{ route('admin.dashboard') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                                <div data-i18n="Dashboard">Dashboard</div>
+                            </a>
+                        </li>
+
                         <!-- Menu Data Pelanggan -->
                         <li class="menu-item {{ request()->routeIs('admin.pelanggan.*') ? 'active' : '' }}">
                             <a href="{{ route('admin.pelanggan.index') }}" class="menu-link">

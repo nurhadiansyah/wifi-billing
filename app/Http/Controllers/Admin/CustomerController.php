@@ -76,12 +76,10 @@ class CustomerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-            'phone' => 'required|string|max:15',
+            'phone' => 'required|string|max:25',
             'address' => 'nullable|string',
             'package_id' => 'nullable|exists:packages,id',
-            'tanggal_tagihan' => 'required|integer|min:1|max:28', 
-            
-            // --- TAMBAHAN KITA: Validasi Status Akun ---
+            'tanggal_tagihan' => 'nullable|integer|min:1|max:28', 
             'status' => 'required|in:aktif,diisolir',
         ]);
 
