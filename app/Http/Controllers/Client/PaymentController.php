@@ -130,13 +130,25 @@ class PaymentController extends Controller
         $callbackSignature = $request->header('x-callback-signature');
         $json = $request->getContent();
         
-        $signature = hash_hmac('sha256', $json, $privateKey);
+        \Log::info('Tripay Callback Triggered', [
+            'signature_header' => $callbackSignature,
+            'event' => $request->header('x-callback-event'),
+            'payload' => $json
+        ]);
 
+        $signature = hash_hmac('sha256', $json, $privateKey);
+        
         if ($signature !== $callbackSignature) {
+            \Log::error('Tripay Signature Mismatch', [
+                'expected' => $signature,
+                'received' => $callbackSignature,
+                'private_key_used' => $privateKey
+            ]);
             return response()->json(['success' => false, 'message' => 'Invalid signature'], 400);
         }
 
         if ('payment_status' !== $request->header('x-callback-event')) {
+            \Log::warning('Tripay Unrecognized Event', ['event' => $request->header('x-callback-event')]);
             return response()->json(['success' => false, 'message' => 'Unrecognized event, ignored'], 200);
         }
 
@@ -147,21 +159,34 @@ class PaymentController extends Controller
             $tripayReference = $data->reference;
             $status = strtoupper((string) $data->status);
 
+            \Log::info('Tripay Callback Decoded', [
+                'merchantRef' => $merchantRef,
+                'tripayReference' => $tripayReference,
+                'status' => $status
+            ]);
+
             if ($status === 'PAID') {
                 $invoice = Invoice::where('invoice_number', $merchantRef)
                                 ->where('tripay_reference', $tripayReference)
-                                ->where('status', 'unpaid')
                                 ->first();
 
                 if ($invoice) {
+                    if ($invoice->status === 'paid') {
+                        \Log::info('Tripay Invoice already paid', ['invoice_number' => $merchantRef]);
+                        return response()->json(['success' => true, 'message' => 'Already paid']);
+                    }
+
                     $invoice->update([
                         'status' => 'paid',
                         'payment_method' => $data->payment_method ?? 'Tripay Payment'
                     ]);
                     
+                    \Log::info('Tripay Invoice updated successfully', ['invoice_number' => $merchantRef]);
                     return response()->json(['success' => true]);
                 }
-                return response()->json(['success' => false, 'message' => 'Invoice not found or already paid'], 404);
+                
+                \Log::error('Tripay Invoice not found', ['merchantRef' => $merchantRef, 'tripayReference' => $tripayReference]);
+                return response()->json(['success' => false, 'message' => 'Invoice not found'], 404);
             }
             
             return response()->json(['success' => true, 'message' => 'Status is not PAID, ignored']);
