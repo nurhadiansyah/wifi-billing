@@ -39,9 +39,8 @@
                 <div class="app-brand demo">
                     <a href="javascript:void(0);" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <i class='bx bx-wifi fs-2 text-primary'></i>
+                            <img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="max-height: 40px; width: auto;">
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bolder ms-2 text-uppercase">WiFi-Qu</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
