@@ -56,7 +56,7 @@
               <div class="app-brand justify-content-center">
                 <a href="{{ url('/') }}" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="max-height: 50px; width: auto;">
+                    <img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;">
                   </span>
                 </a>
               </div>
@@ -131,14 +131,7 @@
                 </div>
               </form>
 
-              @if (Route::has('register'))
-              <p class="text-center">
-                <span>Belum punya akun?</span>
-                <a href="{{ route('register') }}">
-                  <span>Buat akun baru</span>
-                </a>
-              </p>
-              @endif
+
             </div>
           </div>
           <!-- /Register -->
