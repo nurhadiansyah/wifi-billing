@@ -68,7 +68,7 @@
 	<!-- Section Navbar -->
 	<nav class="navbar-1 navbar navbar-expand-lg">
         <div class="container navbar-container">
-            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="max-height: 200px; width: auto;"></a>
+            <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                 	<li class="nav-item dropdown-submenu dropdown">
