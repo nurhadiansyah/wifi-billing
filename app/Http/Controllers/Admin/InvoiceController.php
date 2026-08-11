@@ -158,16 +158,28 @@ class InvoiceController extends Controller
         }
 
         $amount = number_format($invoice->amount, 0, ',', '.');
-        $dueDate = \Carbon\Carbon::parse($invoice->due_date)->translatedFormat('d F Y');
-        $loginUrl = route('login');
+        $dueDateObj = \Carbon\Carbon::parse($invoice->due_date);
+        $dueDateStr = $dueDateObj->format('d/m/Y');
+        $periodEndStr = $dueDateObj->copy()->addMonth()->format('d/m/Y');
+        $packageName = $invoice->user->package ? $invoice->user->package->name : 'Paket Internet';
 
-        $message = "Halo *{$invoice->user->name}*,\n\n"
-                 . "Ini adalah pengingat ramah dari *Admin WiFi*.\n"
-                 . "Berdasarkan catatan kami, Anda memiliki tagihan yang *belum lunas* sebesar *Rp {$amount}*.\n\n"
-                 . "🔹 *Nomor Tagihan:* {$invoice->invoice_number}\n"
-                 . "🔹 *Jatuh Tempo:* {$dueDate}\n\n"
-                 . "Silakan lakukan pembayaran melalui aplikasi/website kami:\n{$loginUrl}\n\n"
-                 . "Abaikan pesan ini jika Anda sudah melakukan pembayaran. Terima kasih atas kerja sama Anda!";
+        $message = "Hai Pelanggan Setia Dreamnet\n\n"
+                 . "Yth. Bapak/Ibu {$invoice->user->name}\n\n"
+                 . "Terima kasih atas kesetiaan & kepercayaan Anda memilih layanan Dreamnet, Kami informasikan Invoice anda telah terbit dan dapat dibayarkan, berikut rinciannya :\n"
+                 . "ID Pelanggan: {$invoice->user->phone}\n"
+                 . "Nomor Invoice: {$invoice->invoice_number}\n"
+                 . "Amount: Rp {$amount}\n"
+                 . "PPN: 0\n"
+                 . "Discount: 0\n"
+                 . "Total: Rp {$amount}\n"
+                 . "Item: Internet {$invoice->user->name} - {$packageName}\n"
+                 . "Jatuh tempo: {$dueDateStr}\n"
+                 . "Period: {$dueDateStr} - {$periodEndStr}\n"
+                 . "Mohon segera lakukan pembayaran sebelum jatuh tempo\n\n\n\n"
+                 . "Terima kasih.\n\n\n"
+                 . "Pihak Dreamnet Tidak menerima Pembayaran secara Tunai melalui Marketing,Teknisi  Atupun Agen Lainya  yang \n"
+                 . "mengatasnamakan Dreamnet\n\n"
+                 . "Ini adalah pesan otomatis - mohon untuk tidak membalas langsung ke pesan ini";
 
         $success = $this->sendFonnteMessage($phone, $message);
 
@@ -191,16 +203,28 @@ class InvoiceController extends Controller
             $phone = $invoice->user->phone;
             if ($phone) {
                 $amount = number_format($invoice->amount, 0, ',', '.');
-                $dueDate = \Carbon\Carbon::parse($invoice->due_date)->translatedFormat('d F Y');
-                $loginUrl = route('login');
+                $dueDateObj = \Carbon\Carbon::parse($invoice->due_date);
+                $dueDateStr = $dueDateObj->format('d/m/Y');
+                $periodEndStr = $dueDateObj->copy()->addMonth()->format('d/m/Y');
+                $packageName = $invoice->user->package ? $invoice->user->package->name : 'Paket Internet';
 
-                $message = "Halo *{$invoice->user->name}*,\n\n"
-                         . "Ini adalah pengingat ramah dari *Admin WiFi*.\n"
-                         . "Berdasarkan catatan kami, Anda memiliki tagihan yang *belum lunas* sebesar *Rp {$amount}*.\n\n"
-                         . "🔹 *Nomor Tagihan:* {$invoice->invoice_number}\n"
-                         . "🔹 *Jatuh Tempo:* {$dueDate}\n\n"
-                         . "Silakan lakukan pembayaran melalui aplikasi/website kami:\n{$loginUrl}\n\n"
-                         . "Abaikan pesan ini jika Anda sudah melakukan pembayaran. Terima kasih atas kerja sama Anda!";
+                $message = "Hai Pelanggan Setia Dreamnet\n\n"
+                         . "Yth. Bapak/Ibu {$invoice->user->name}\n\n"
+                         . "Terima kasih atas kesetiaan & kepercayaan Anda memilih layanan Dreamnet, Kami informasikan Invoice anda telah terbit dan dapat dibayarkan, berikut rinciannya :\n"
+                         . "ID Pelanggan: {$invoice->user->phone}\n"
+                         . "Nomor Invoice: {$invoice->invoice_number}\n"
+                         . "Amount: Rp {$amount}\n"
+                         . "PPN: 0\n"
+                         . "Discount: 0\n"
+                         . "Total: Rp {$amount}\n"
+                         . "Item: Internet {$invoice->user->name} - {$packageName}\n"
+                         . "Jatuh tempo: {$dueDateStr}\n"
+                         . "Period: {$dueDateStr} - {$periodEndStr}\n"
+                         . "Mohon segera lakukan pembayaran sebelum jatuh tempo\n\n\n\n"
+                         . "Terima kasih.\n\n\n"
+                         . "Pihak Dreamnet Tidak menerima Pembayaran secara Tunai melalui Marketing,Teknisi  Atupun Agen Lainya  yang \n"
+                         . "mengatasnamakan Dreamnet\n\n"
+                         . "Ini adalah pesan otomatis - mohon untuk tidak membalas langsung ke pesan ini";
 
                 $apiSuccess = $this->sendFonnteMessage($phone, $message);
                 if ($apiSuccess) {

@@ -97,17 +97,29 @@ class GenerateDailyInvoices extends Command
             $phone = '62' . substr($phone, 1);
         }
 
-        $amountFormatted = 'Rp ' . number_format($invoice->amount, 0, ',', '.');
-        $dueDate = Carbon::parse($invoice->due_date)->translatedFormat('d F Y');
+        $amount = number_format($invoice->amount, 0, ',', '.');
+        $dueDateObj = \Carbon\Carbon::parse($invoice->due_date);
+        $dueDateStr = $dueDateObj->format('d/m/Y');
+        $periodEndStr = $dueDateObj->copy()->addMonth()->format('d/m/Y');
+        $packageName = $client->package ? $client->package->name : 'Paket Internet';
 
-        $message = "Halo *{$client->name}*,\n\n";
-        $message .= "Tagihan internet WiFi Anda bulan ini telah terbit:\n\n";
-        $message .= "No. Tagihan: {$invoice->invoice_number}\n";
-        $message .= "Paket: {$client->package->name}\n";
-        $message .= "Total Tagihan: *{$amountFormatted}*\n";
-        $message .= "Jatuh Tempo: *{$dueDate}*\n\n";
-        $message .= "Mohon segera melakukan pembayaran agar koneksi internet Anda tetap lancar. Terima kasih!\n\n";
-        $message .= "- Dreamnet Indonesia";
+        $message = "Hai Pelanggan Setia Dreamnet\n\n"
+                 . "Yth. Bapak/Ibu {$client->name}\n\n"
+                 . "Terima kasih atas kesetiaan & kepercayaan Anda memilih layanan Dreamnet, Kami informasikan Invoice anda telah terbit dan dapat dibayarkan, berikut rinciannya :\n"
+                 . "ID Pelanggan: {$client->phone}\n"
+                 . "Nomor Invoice: {$invoice->invoice_number}\n"
+                 . "Amount: Rp {$amount}\n"
+                 . "PPN: 0\n"
+                 . "Discount: 0\n"
+                 . "Total: Rp {$amount}\n"
+                 . "Item: Internet {$client->name} - {$packageName}\n"
+                 . "Jatuh tempo: {$dueDateStr}\n"
+                 . "Period: {$dueDateStr} - {$periodEndStr}\n"
+                 . "Mohon segera lakukan pembayaran sebelum jatuh tempo\n\n\n\n"
+                 . "Terima kasih.\n\n\n"
+                 . "Pihak Dreamnet Tidak menerima Pembayaran secara Tunai melalui Marketing,Teknisi  Atupun Agen Lainya  yang \n"
+                 . "mengatasnamakan Dreamnet\n\n"
+                 . "Ini adalah pesan otomatis - mohon untuk tidak membalas langsung ke pesan ini";
 
         $fonnteToken = env('FONNTE_TOKEN');
         if (empty($fonnteToken)) {
