@@ -51,7 +51,7 @@
                             <!-- TOMBOL HUBUNGI ADMIN WA -->
                             @php
                                 // GANTI NOMOR INI DENGAN NOMOR WA ADMIN (Gunakan 62 di depannya, tanpa angka 0)
-                                $no_wa_admin = '6285242899941'; 
+                                $no_wa_admin = '6285256486282'; 
                                 
                                 // Mengambil alamat (jika kosong, tampilkan teks alternatif)
                                 $alamat = auth()->user()->address ?? 'Belum ada data alamat';
