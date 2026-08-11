@@ -81,19 +81,24 @@ class CustomerController extends Controller
             'package_id' => 'nullable|exists:packages,id',
             'tanggal_tagihan' => 'nullable|integer|min:1|max:28', 
             'status' => 'required|in:aktif,diisolir',
+            'password' => 'nullable|string|min:6',
         ]);
 
-        $customer->update([
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
             'address' => $request->address,
             'package_id' => $request->package_id,
             'tanggal_tagihan' => $request->tanggal_tagihan,
-            
-            // --- TAMBAHAN KITA: Update Status Akun ---
             'status' => $request->status, 
-        ]);
+        ];
+
+        if ($request->filled('password')) {
+            $updateData['password'] = bcrypt($request->password);
+        }
+
+        $customer->update($updateData);
 
         return redirect()->route('admin.pelanggan.index')->with('success', 'Data Pelanggan berhasil diperbarui!');
     }
