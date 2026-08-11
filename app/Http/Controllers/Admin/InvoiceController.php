@@ -91,8 +91,16 @@ class InvoiceController extends Controller
             'payment_method' => 'Manual (Cash/Transfer Langsung)',
         ]);
 
+        // FITUR BARU: Sesuaikan siklus tanggal tagihan dengan tanggal pembayaran hari ini
+        if ($invoice->user) {
+            $todayDay = \Carbon\Carbon::today()->day;
+            $invoice->user->update([
+                'tanggal_tagihan' => $todayDay
+            ]);
+        }
+
         // Kembalikan ke halaman daftar tagihan dengan pesan sukses
-        return redirect()->route('admin.tagihan.index')->with('success', 'Status tagihan berhasil diubah menjadi Lunas secara manual!');
+        return redirect()->route('admin.tagihan.index')->with('success', 'Status tagihan Lunas, dan Siklus Tagihan pelanggan diperbarui ke tanggal ' . $todayDay . ' setiap bulannya!');
     }
 
     // Menghapus tagihan
