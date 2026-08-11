@@ -115,8 +115,9 @@ class GenerateDailyInvoices extends Command
                  . "Item: Internet {$client->name} - {$packageName}\n"
                  . "Jatuh tempo: {$dueDateStr}\n"
                  . "Period: {$dueDateStr} - {$periodEndStr}\n"
-                 . "Mohon segera lakukan pembayaran sebelum jatuh tempo\n\n\n\n"
-                 . "Terima kasih.\n\n\n"
+                 . "Mohon segera lakukan pembayaran sebelum jatuh tempo\n\n"
+                 . "Terima kasih.\n\n"
+                 . "silahkan melakukan pembayaran di website resmi kami 🙏🏻 di dreamnetindonesia\n\n\n"
                  . "Pihak Dreamnet Tidak menerima Pembayaran secara Tunai melalui Marketing,Teknisi  Atupun Agen Lainya  yang \n"
                  . "mengatasnamakan Dreamnet\n\n"
                  . "Ini adalah pesan otomatis - mohon untuk tidak membalas langsung ke pesan ini";
