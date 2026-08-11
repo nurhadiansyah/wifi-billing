@@ -92,11 +92,9 @@
                 <div class="mb-6 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Password</label>
-                    @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}">
+                    <a href="https://wa.me/6285256486282?text=Halo%20Admin%2C%20saya%20lupa%20password%20akun%20WiFi%20saya.%20Mohon%20bantuannya%20untuk%20mereset%20password%20saya." target="_blank">
                       <small>Lupa Password?</small>
                     </a>
-                    @endif
                   </div>
                   <div class="input-group input-group-merge">
                     <input
