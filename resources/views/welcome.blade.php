@@ -304,7 +304,7 @@
 					<h2>Hubungi kami untuk lebih lanjut</h2>
 				</div>
 				<div class="col-12 ez-animate text-center" data-animation="fadeInUp">
-					<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20ingin%20bertanya%20informasi%20lebih%20lanjut" class="btn-1 shadow1 style3 bgscheme" style="font-size: 18px; padding: 15px 30px; border-radius: 30px; display: inline-block; margin-top: 20px; color: #fff; text-decoration: none;">
+					<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20ingin%20bertanya%20informasi%20lebih%20lanjut" class="btn-1 shadow1 style3 bgscheme d-inline-flex align-items-center justify-content-center" style="font-size: 18px; padding: 15px 30px; border-radius: 30px; margin-top: 20px; color: #fff; text-decoration: none;">
                         <i class="fa fa-whatsapp fa-lg mr-2"></i> Pesan WhatsApp Admin
                     </a>
 				</div>
