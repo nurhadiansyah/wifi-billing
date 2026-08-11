@@ -316,31 +316,68 @@
 
 	<!-- /.Section Download 1 -->
 	<!-- Section Footer -->
-	<div id="section-footer">
+	<div id="section-footer" style="background: #0f172a !important; padding: 60px 0 20px 0; color: #fff; position: relative; z-index: 10;">
 		<div class="container">
-			<div class="footer-widget">
-				<div class="row">
-					<div class="left col-md-4 col-12 text-center text-md-left mb-4 mb-md-0">
-						<a href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;"></a>
+			<div class="row mb-5">
+				<!-- Column 1: Brand & Info -->
+				<div class="col-lg-5 col-md-12 mb-5 mb-lg-0">
+					<div class="d-flex align-items-center mb-3">
+						<div style="background-color: #0ea5e9; border-radius: 8px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+							<i class="fa fa-wifi" style="font-size: 20px; color: white;"></i>
+						</div>
+						<h4 class="mb-0 text-white" style="font-weight: 700;">Dreamnet Indonesia</h4>
 					</div>
-					<div class="right col-md-8 col-12 text-center text-md-right">
-						<div class="contact-info text-white" style="font-size: 15px;">
-                            <span class="mr-md-3 d-block d-md-inline-block mb-2 mb-md-0"><i class="fa fa-phone"></i> Hubungi Kami: </span>
-			                <a href="https://wa.me/6285256486282" class="d-inline-block mr-md-3 mb-2 mb-md-0" title="0852-5648-6282" style="color: #fff; text-decoration: none;"><i class="fa fa-whatsapp fa-lg mr-1"></i> 0852-5648-6282</a>
-							<a href="mailto:support@dreamnetindonesia.com" class="d-inline-block" title="support@dreamnetindonesia.com" style="color: #fff; text-decoration: none;"><i class="fa fa-envelope fa-lg mr-1"></i> support@dreamnetindonesia.com</a>
-			            </div>
+					<p style="color: #cbd5e1; font-size: 14px; line-height: 1.8; margin-bottom: 25px; padding-right: 20px;">
+						Penyedia layanan internet terpercaya dengan teknologi fiber optik terdepan.
+						Memberikan koneksi stabil dan kecepatan tinggi untuk kebutuhan digital Anda.
+					</p>
+					<div class="d-flex">
+						<a href="#" style="width: 36px; height: 36px; background-color: #14b8a6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; text-decoration: none; transition: 0.3s;"><i class="fa fa-facebook"></i></a>
+						<a href="#" style="width: 36px; height: 36px; background-color: #14b8a6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; text-decoration: none; transition: 0.3s;"><i class="fa fa-twitter"></i></a>
+						<a href="#" style="width: 36px; height: 36px; background-color: #14b8a6; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; text-decoration: none; transition: 0.3s;"><i class="fa fa-instagram"></i></a>
+						<a href="https://wa.me/6285256486282" style="width: 36px; height: 36px; background-color: #22c55e; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; text-decoration: none; transition: 0.3s;"><i class="fa fa-whatsapp"></i></a>
 					</div>
 				</div>
+
+				<!-- Column 2: Layanan -->
+				<div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+					<h5 class="text-white mb-4" style="font-weight: 600;">Layanan</h5>
+					<ul class="list-unstyled" style="line-height: 2.5;">
+						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Internet Rumah</a></li>
+						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Internet Bisnis</a></li>
+						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Dedicated Line</a></li>
+						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Hosting & Domain</a></li>
+					</ul>
+				</div>
+
+				<!-- Column 3: Kontak -->
+				<div class="col-lg-4 col-md-6">
+					<h5 class="text-white mb-4" style="font-weight: 600;">Kontak</h5>
+					<ul class="list-unstyled" style="line-height: 2.5;">
+						<li style="color: #cbd5e1; font-size: 14px; display: flex; align-items: center;">
+							<i class="fa fa-phone" style="color: #14b8a6; width: 25px;"></i> +62 085-256-486-282
+						</li>
+						<li style="color: #cbd5e1; font-size: 14px; display: flex; align-items: center;">
+							<i class="fa fa-envelope" style="color: #14b8a6; width: 25px;"></i> support@dreamnetindonesia.com
+						</li>
+						<li style="color: #cbd5e1; font-size: 14px; display: flex; align-items: center;">
+							<i class="fa fa-map-marker" style="color: #14b8a6; width: 25px;"></i> Makassar, Indonesia
+						</li>
+						<li style="color: #cbd5e1; font-size: 14px; display: flex; align-items: center;">
+							<i class="fa fa-whatsapp" style="color: #22c55e; width: 25px;"></i> +62 085-256-486-282
+						</li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="footer-copyright container-fluid ">
-			<div class="col-12 text-center">
-				<p>© {{ date('Y') }} Copyrights <a href="#">CV Laju Bersama Makmur - DreamNet Indonesia</a></p>
-				<p class="mt-2" style="font-size: 13px;">
-					<a href="{{ route('privacy') }}" style="color: #bbb;" class="mr-3">Kebijakan Privasi</a> | 
-					<a href="{{ route('about') }}" style="color: #bbb;" class="mx-3">Tentang Kami</a> | 
-					<a href="{{ route('terms') }}" style="color: #bbb;" class="ml-3">Syarat & Ketentuan</a>
+
+			<div style="border-top: 1px solid #1e293b; padding-top: 25px; display: flex; justify-content: space-between; flex-wrap: wrap;">
+				<p style="color: #94a3b8; font-size: 13px; margin-bottom: 10px;">
+					© {{ date('Y') }} Bayar Internet. All rights reserved.
 				</p>
+				<div style="font-size: 13px;">
+					<a href="{{ route('privacy') }}" style="color: #94a3b8; text-decoration: none; margin-right: 15px; transition: 0.3s;">Privacy Policy</a>
+					<a href="{{ route('terms') }}" style="color: #94a3b8; text-decoration: none; transition: 0.3s;">Terms of Service</a>
+				</div>
 			</div>
 		</div>
 	</div>
