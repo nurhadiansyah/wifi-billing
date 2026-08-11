@@ -119,13 +119,15 @@
 				<div class="swiper-slide">
 					<div class="slider-content">
 						<div class="container">
-							<div class="row">
-								<div class="left col-12 col-sm-12 col-md-7">
-									<h1 class="ez-animate" data-animation="fadeInLeft">Internet Cepat & Tanpa Batas dari DreamNet.</h1>
-									<p class="ez-animate" data-animation="fadeInLeft">Nikmati koneksi internet unlimited yang stabil dan terjangkau untuk kebutuhan rumah dan bisnis Anda. Bersama CV Laju Bersama Makmur, kami hadir memberikan solusi konektivitas terbaik!</p>
-								</div>
-								<div class="right ez-animate col-12 col-sm-12 col-md-5" data-animation="fadeInRight">
-									
+							<div class="row text-center">
+								<div class="col-12 col-md-10 col-lg-8 mx-auto">
+									<h1 class="ez-animate mb-4" data-animation="fadeInUp" style="font-weight: 800; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">Internet Cepat & Tanpa Batas dari DreamNet.</h1>
+									<p class="ez-animate mb-5" data-animation="fadeInUp" style="font-size: 18px; line-height: 1.8; opacity: 0.95; font-weight: 500;">Nikmati koneksi internet unlimited yang stabil dan terjangkau untuk kebutuhan rumah dan bisnis Anda. Bersama CV Laju Bersama Makmur, kami hadir memberikan solusi konektivitas terbaik!</p>
+                                    
+                                    <div class="ez-animate d-flex justify-content-center align-items-center flex-wrap" data-animation="fadeInUp">
+                                        <a href="#section-pricing1" class="btn-1 shadow1 style3 scroll-down mb-3 mb-sm-0 mr-sm-3" style="font-weight: 600; padding: 15px 35px; border-radius: 30px; background-color: #fff; color: #6366f1;">Lihat Paket</a>
+                                        <a href="https://wa.me/6285256486282" class="btn-1 shadow1 style3 mb-3 mb-sm-0" style="font-weight: 600; padding: 13px 35px; border-radius: 30px; background-color: transparent; border: 2px solid #fff; color: #fff;"><i class="fa fa-whatsapp mr-2 fa-lg"></i>Hubungi Kami</a>
+                                    </div>
 								</div>
 							</div>
 						</div>
