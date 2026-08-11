@@ -71,32 +71,17 @@
             <a class="navbar-brand" href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;"></a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                	<li class="nav-item dropdown-submenu dropdown">
-                        <a class="dropdown-item dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Home
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url('/') }}" class="dropdown-item">Homepage 1</a></li>
-                            <li><a href="#" class="dropdown-item">Homepage 2</a></li>
-                        </ul>
-                    </li>
 	                <li class="nav-item">
-	                    <a href="#section-features1" class="nav-link scroll-down">Features</a>
+	                    <a href="{{ url('/') }}" class="nav-link">Beranda</a>
 	                </li>
 	                <li class="nav-item">
-	                    <a href="#section-pricing1" class="nav-link scroll-down">Pricing</a>
+	                    <a href="#section-features1" class="nav-link scroll-down">Keunggulan</a>
 	                </li>
-	                <li class="nav-item dropdown-submenu dropdown">
-                        <a class="dropdown-item dropdown-toggle nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            News
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="dropdown-item">Blog List</a></li>
-                            <li><a href="#" class="dropdown-item">Blog Detail</a></li>
-                        </ul>
-                    </li>
 	                <li class="nav-item">
-	                    <a href="#" class="nav-link">Contact</a>
+	                    <a href="#section-pricing1" class="nav-link scroll-down">Paket</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a href="#section-footer" class="nav-link scroll-down">Kontak</a>
 	                </li>
                 </ul>
             </div>
