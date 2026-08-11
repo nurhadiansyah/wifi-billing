@@ -86,7 +86,10 @@ class PaymentController extends Controller
         ];
 
         // Tembak API Tripay Create Transaction!
-        $response = Http::withToken($apiKey)->post(env('TRIPAY_URL'), $data);
+        $mode = env('TRIPAY_MODE', 'sandbox');
+        $baseUrl = $mode === 'production' ? 'https://tripay.co.id/api/' : 'https://tripay.co.id/api-sandbox/';
+        
+        $response = Http::withToken($apiKey)->post($baseUrl . 'transaction/create', $data);
         $result = $response->json();
 
         if ($response->successful() && isset($result['success']) && $result['success'] == true) {
