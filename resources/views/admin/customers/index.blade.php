@@ -206,6 +206,10 @@
                                             <input type="number" name="tanggal_tagihan" class="form-control" value="{{ $customer->tanggal_tagihan }}" min="1" max="28" required>
                                             <small class="text-muted">Pilih tanggal 1 - 28</small>
                                         </div>
+                                        <div class="form-group mb-3">
+                                            <label class="form-label">Password Baru <span class="text-muted" style="font-size: 11px;">(Kosongkan jika tidak ingin diubah)</span></label>
+                                            <input type="text" name="password" class="form-control" placeholder="Masukkan password baru (Opsional)">
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
