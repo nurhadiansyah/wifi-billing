@@ -304,7 +304,7 @@
 					<h2>Hubungi kami untuk lebih lanjut</h2>
 				</div>
 				<div class="col-12 ez-animate text-center" data-animation="fadeInUp">
-					<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20ingin%20bertanya%20informasi%20lebih%20lanjut" class="btn-1 shadow1 style3 bgscheme" style="font-size: 18px; padding: 15px 30px; border-radius: 30px; display: inline-block; margin-top: 20px;">
+					<a href="https://wa.me/6285256486282?text=Halo%20Admin%20DreamNet,%20saya%20ingin%20bertanya%20informasi%20lebih%20lanjut" class="btn-1 shadow1 style3 bgscheme" style="font-size: 18px; padding: 15px 30px; border-radius: 30px; display: inline-block; margin-top: 20px; color: #fff; text-decoration: none;">
                         <i class="fa fa-whatsapp fa-lg mr-2"></i> Pesan WhatsApp Admin
                     </a>
 				</div>
@@ -320,14 +320,14 @@
 		<div class="container">
 			<div class="footer-widget">
 				<div class="row">
-					<div class="left col-md-6">
-						<a href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="max-height: 50px; width: auto;"></a>
+					<div class="left col-md-4 col-12 text-center text-md-left mb-4 mb-md-0">
+						<a href="{{ url('/') }}"><img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;"></a>
 					</div>
-					<div class="right col-md-6">
-						<div class="social-links d-flex align-items-center justify-content-end">
-                            <span class="mr-3 text-white"><i class="fa fa-phone"></i> Hubungi Kami: </span>
-			                <a href="https://wa.me/6285256486282" title="0852-5648-6282" style="width: auto; padding: 0 10px; font-size: 14px;"><i class="fa fa-whatsapp fa-lg mr-1"></i> 0852-5648-6282</a>
-							<a href="mailto:[EMAIL_ADDRESS]" title="support@dreamnetindonesia.com" style="width: auto; padding: 0 10px; font-size: 14px;"><i class="fa fa-mail fa-lg mr-1"></i>support@dreamnetindonesia.com</a>
+					<div class="right col-md-8 col-12 text-center text-md-right">
+						<div class="contact-info text-white" style="font-size: 15px;">
+                            <span class="mr-md-3 d-block d-md-inline-block mb-2 mb-md-0"><i class="fa fa-phone"></i> Hubungi Kami: </span>
+			                <a href="https://wa.me/6285256486282" class="d-inline-block mr-md-3 mb-2 mb-md-0" title="0852-5648-6282" style="color: #fff; text-decoration: none;"><i class="fa fa-whatsapp fa-lg mr-1"></i> 0852-5648-6282</a>
+							<a href="mailto:support@dreamnetindonesia.com" class="d-inline-block" title="support@dreamnetindonesia.com" style="color: #fff; text-decoration: none;"><i class="fa fa-envelope fa-lg mr-1"></i> support@dreamnetindonesia.com</a>
 			            </div>
 					</div>
 				</div>
