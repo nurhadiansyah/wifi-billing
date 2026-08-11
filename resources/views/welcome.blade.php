@@ -329,7 +329,7 @@
 				<!-- Column 2: Layanan -->
 				<div class="col-lg-3 col-md-6 mb-5 mb-md-0">
 					<h5 class="text-white mb-4" style="font-weight: 600;">Layanan</h5>
-					<ul class="list-unstyled" style="line-height: 2.5;">
+					<ul class="list-unstyled" style="line-height: 2.5; padding-left: 0; margin-left: 0;">
 						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Internet Rumah</a></li>
 						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Internet Bisnis</a></li>
 						<li><a href="#" style="color: #cbd5e1; text-decoration: none; font-size: 14px; transition: 0.3s;">Dedicated Line</a></li>
@@ -340,7 +340,7 @@
 				<!-- Column 3: Kontak -->
 				<div class="col-lg-4 col-md-6">
 					<h5 class="text-white mb-4" style="font-weight: 600;">Kontak</h5>
-					<ul class="list-unstyled" style="line-height: 2.5;">
+					<ul class="list-unstyled" style="line-height: 2.5; padding-left: 0; margin-left: 0;">
 						<li style="color: #cbd5e1; font-size: 14px; display: flex; align-items: center;">
 							<i class="fa fa-phone" style="color: #14b8a6; width: 25px;"></i> +62 085-256-486-282
 						</li>
