@@ -121,6 +121,14 @@
                                     $namaBulan = $bulanIndo[$tagihanDate->month - 1];
                                 @endphp
                                 <span class="badge bg-info text-dark">{{ $tagihanDate->day }} {{ $namaBulan }} {{ $tagihanDate->year }}</span>
+                                @php
+                                    $unpaidCount = \App\Models\Invoice::where('user_id', $customer->id)->where('status', 'unpaid')->count();
+                                @endphp
+                                @if($unpaidCount > 0)
+                                    <div class="mt-1"><span class="badge bg-label-danger" style="font-size: 10px;">Belum Bayar</span></div>
+                                @else
+                                    <div class="mt-1"><span class="badge bg-label-success" style="font-size: 10px;">Lunas</span></div>
+                                @endif
                             @else
                                 <span class="badge bg-secondary">Belum Diatur</span>
                             @endif
