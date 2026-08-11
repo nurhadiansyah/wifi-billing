@@ -104,32 +104,34 @@ class InvoiceController extends Controller
         return redirect()->route('admin.tagihan.index')->with('success', 'Tagihan berhasil dihapus!');
     }
 
-    private function sendWhatbizzMessage($target, $message)
+    private function sendFonnteMessage($target, $message)
     {
-        $token = env('WHATBIZZ_TOKEN');
+        $token = env('FONNTE_TOKEN');
         if (empty($token)) {
             return false;
         }
 
-        // Format target ke format internasional (misal: +62 atau 62 jika diperlukan oleh Whatbizz)
+        // Format target ke format internasional (misal: +62 atau 62 jika diperlukan oleh Fonnte)
         // Kita ubah awalan 0 menjadi 62 jika ada
         if (substr($target, 0, 1) === '0') {
             $target = '62' . substr($target, 1);
         }
 
         try {
-            $response = Http::post('https://whatsbizapi.com/api/wpbox/sendmessage', [
-                'token' => $token,
-                'phone' => $target,
+            $response = Http::withHeaders([
+                'Authorization' => $token
+            ])->post('https://api.fonnte.com/send', [
+                'target' => $target,
                 'message' => $message,
+                'countryCode' => '62',
             ]);
             
             // Log response API ke dalam storage/logs/laravel.log
-            \Illuminate\Support\Facades\Log::info('Whatbizz Response: ' . $response->body());
+            \Illuminate\Support\Facades\Log::info('Fonnte Response: ' . $response->body());
 
             return $response->successful();
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error('Whatbizz Error: ' . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Fonnte Error: ' . $e->getMessage());
             return false;
         }
     }
@@ -159,12 +161,12 @@ class InvoiceController extends Controller
                  . "Silakan lakukan pembayaran melalui aplikasi/website kami:\n{$loginUrl}\n\n"
                  . "Abaikan pesan ini jika Anda sudah melakukan pembayaran. Terima kasih atas kerja sama Anda!";
 
-        $success = $this->sendWhatbizzMessage($phone, $message);
+        $success = $this->sendFonnteMessage($phone, $message);
 
         if ($success) {
             return redirect()->back()->with('success', 'Pesan pengingat WhatsApp berhasil dikirim ke ' . $invoice->user->name);
         } else {
-            return redirect()->back()->with('error', 'Gagal mengirim pesan WhatsApp. Pastikan Token Whatbizz disetel di .env atau nomor tujuan benar.');
+            return redirect()->back()->with('error', 'Gagal mengirim pesan WhatsApp. Pastikan Token Fonnte disetel di .env atau nomor tujuan benar.');
         }
     }
 
@@ -192,7 +194,7 @@ class InvoiceController extends Controller
                          . "Silakan lakukan pembayaran melalui aplikasi/website kami:\n{$loginUrl}\n\n"
                          . "Abaikan pesan ini jika Anda sudah melakukan pembayaran. Terima kasih atas kerja sama Anda!";
 
-                $apiSuccess = $this->sendWhatbizzMessage($phone, $message);
+                $apiSuccess = $this->sendFonnteMessage($phone, $message);
                 if ($apiSuccess) {
                     $count++;
                 }
@@ -202,7 +204,7 @@ class InvoiceController extends Controller
         if ($count > 0) {
             return redirect()->back()->with('success', "Berhasil memproses pengiriman WhatsApp ke $count pelanggan.");
         } else {
-            return redirect()->back()->with('error', "Gagal mengirim pesan massal. Pastikan Token Whatbizz di .env valid dan aktif.");
+            return redirect()->back()->with('error', "Gagal mengirim pesan massal. Pastikan Token Fonnte di .env valid dan aktif.");
         }
     }
 }
