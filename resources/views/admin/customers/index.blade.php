@@ -105,7 +105,22 @@
                         </td>
                         <td>
                             @if($customer->tanggal_tagihan)
-                                <span class="badge bg-info text-dark">Tgl {{ $customer->tanggal_tagihan }}</span>
+                                @php
+                                    $today = \Carbon\Carbon::today();
+                                    $tgl = $customer->tanggal_tagihan;
+                                    $daysInMonth = $today->daysInMonth;
+                                    $safeDay = $tgl > $daysInMonth ? $daysInMonth : $tgl;
+                                    $tagihanDate = \Carbon\Carbon::createFromDate($today->year, $today->month, $safeDay);
+                                    
+                                    if ($today->day > $safeDay) {
+                                        $tagihanDate->addMonthNoOverflow();
+                                        $tagihanDate->day = min($tgl, $tagihanDate->daysInMonth);
+                                    }
+                                    
+                                    $bulanIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+                                    $namaBulan = $bulanIndo[$tagihanDate->month - 1];
+                                @endphp
+                                <span class="badge bg-info text-dark">{{ $tagihanDate->day }} {{ $namaBulan }} {{ $tagihanDate->year }}</span>
                             @else
                                 <span class="badge bg-secondary">Belum Diatur</span>
                             @endif

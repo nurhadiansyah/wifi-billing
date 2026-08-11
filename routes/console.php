@@ -8,4 +8,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::command('tagihan:generate')->dailyAt('00:01'); // <-- Ubah baris ini
+Schedule::command('billing:generate-daily')->dailyAt('08:00');
