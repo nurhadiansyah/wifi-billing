@@ -48,6 +48,11 @@ class CustomerController extends Controller
             
             // --- TAMBAHAN KITA: Validasi Tanggal Tagihan ---
             'tanggal_tagihan' => 'required|integer|min:1|max:28', 
+            'router_user' => 'nullable|string|max:255',
+            'router_password' => 'nullable|string|max:255',
+            'router_profile' => 'nullable|string|max:255',
+            'router_nas' => 'nullable|string|max:255',
+            'activation_date' => 'nullable|date',
         ]);
 
         User::create([
@@ -59,6 +64,12 @@ class CustomerController extends Controller
             
             // --- TAMBAHAN KITA: Simpan Tanggal Tagihan ---
             'tanggal_tagihan' => $request->tanggal_tagihan, 
+            
+            'router_user' => $request->router_user,
+            'router_password' => $request->router_password,
+            'router_profile' => $request->router_profile,
+            'router_nas' => $request->router_nas,
+            'activation_date' => $request->activation_date,
             
             'password' => bcrypt('password123'),
             'role' => 'client',
@@ -82,6 +93,11 @@ class CustomerController extends Controller
             'tanggal_tagihan' => 'nullable|integer|min:1|max:28', 
             'status' => 'required|in:aktif,diisolir',
             'password' => 'nullable|string|min:6',
+            'router_user' => 'nullable|string|max:255',
+            'router_password' => 'nullable|string|max:255',
+            'router_profile' => 'nullable|string|max:255',
+            'router_nas' => 'nullable|string|max:255',
+            'activation_date' => 'nullable|date',
         ]);
 
         $updateData = [
@@ -92,6 +108,11 @@ class CustomerController extends Controller
             'package_id' => $request->package_id,
             'tanggal_tagihan' => $request->tanggal_tagihan,
             'status' => $request->status, 
+            'router_user' => $request->router_user,
+            'router_password' => $request->router_password,
+            'router_profile' => $request->router_profile,
+            'router_nas' => $request->router_nas,
+            'activation_date' => $request->activation_date,
         ];
 
         if ($request->filled('password')) {

@@ -201,6 +201,34 @@
                                             <label class="form-label">Alamat Pemasangan</label>
                                             <textarea name="address" class="form-control" rows="2">{{ $customer->address }}</textarea>
                                         </div>
+                                        
+                                        <hr class="my-3">
+                                        <h6 class="text-muted">Data Router & Aktivasi (Opsional)</h6>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col mb-0">
+                                                <label class="form-label">Router User</label>
+                                                <input type="text" name="router_user" class="form-control" value="{{ $customer->router_user }}">
+                                            </div>
+                                            <div class="col mb-0">
+                                                <label class="form-label">Router Password</label>
+                                                <input type="text" name="router_password" class="form-control" value="{{ $customer->router_password }}">
+                                            </div>
+                                        </div>
+                                        <div class="row g-2 mb-3">
+                                            <div class="col mb-0">
+                                                <label class="form-label">Router Profile</label>
+                                                <input type="text" name="router_profile" class="form-control" value="{{ $customer->router_profile }}">
+                                            </div>
+                                            <div class="col mb-0">
+                                                <label class="form-label">NAS</label>
+                                                <input type="text" name="router_nas" class="form-control" value="{{ $customer->router_nas }}">
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Tanggal Aktivasi</label>
+                                            <input type="date" name="activation_date" class="form-control" value="{{ $customer->activation_date ? \Carbon\Carbon::parse($customer->activation_date)->format('Y-m-d') : '' }}">
+                                        </div>
+                                        <hr class="my-3">
                                         <div class="form-group mb-3">
                                             <label for="tanggal_tagihan">Tanggal Jatuh Tempo</label>
                                             <input type="number" name="tanggal_tagihan" class="form-control" value="{{ $customer->tanggal_tagihan }}" min="1" max="28" required>
@@ -271,6 +299,34 @@
                         <label class="form-label">Alamat Pemasangan</label>
                         <textarea name="address" class="form-control" rows="2" placeholder="Detail alamat..."></textarea>
                     </div>
+
+                    <hr class="my-3">
+                    <h6 class="text-muted">Data Router & Aktivasi (Opsional)</h6>
+                    <div class="row g-2 mb-3">
+                        <div class="col mb-0">
+                            <label class="form-label">Router User</label>
+                            <input type="text" name="router_user" class="form-control">
+                        </div>
+                        <div class="col mb-0">
+                            <label class="form-label">Router Password</label>
+                            <input type="text" name="router_password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col mb-0">
+                            <label class="form-label">Router Profile</label>
+                            <input type="text" name="router_profile" class="form-control">
+                        </div>
+                        <div class="col mb-0">
+                            <label class="form-label">NAS</label>
+                            <input type="text" name="router_nas" class="form-control">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tanggal Aktivasi</label>
+                        <input type="date" name="activation_date" class="form-control">
+                    </div>
+                    <hr class="my-3">
                     <div class="form-group mb-3">
                         <label for="tanggal_tagihan">Tanggal Jatuh Tempo</label>
                         <input type="number" name="tanggal_tagihan" class="form-control" placeholder="Contoh: 5" min="1" max="28" required>
