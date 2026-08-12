@@ -60,6 +60,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Halaman Tagihan
     Route::get('/tagihan', [App\Http\Controllers\Admin\InvoiceController::class, 'index'])->name('tagihan.index');
     Route::post('/tagihan', [App\Http\Controllers\Admin\InvoiceController::class, 'store'])->name('tagihan.store');
+    Route::put('/tagihan/{id}', [App\Http\Controllers\Admin\InvoiceController::class, 'update'])->name('tagihan.update');
     Route::put('/tagihan/{id}/lunas', [App\Http\Controllers\Admin\InvoiceController::class, 'markAsPaid'])->name('tagihan.paid');
     Route::delete('/tagihan/{id}', [App\Http\Controllers\Admin\InvoiceController::class, 'destroy'])->name('tagihan.destroy');
 

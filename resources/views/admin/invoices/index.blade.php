@@ -105,6 +105,10 @@
                                 </form>
                             @endif
 
+                            <button type="button" class="btn btn-sm btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEditTagihan{{ $invoice->id }}" title="Edit">
+                                <i class="bx bx-edit"></i>
+                            </button>
+
                             <form action="{{ route('admin.tagihan.destroy', $invoice->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Yakin ingin menghapus tagihan ini?');">
                                 @csrf
                                 @method('DELETE')
@@ -127,6 +131,47 @@
         </div>
     </div>
 </div>
+
+<!-- ============================================== -->
+<!-- MODAL EDIT TAGIHAN (DILOOP) -->
+<!-- ============================================== -->
+@foreach($invoices as $invoice)
+<div class="modal fade" id="modalEditTagihan{{ $invoice->id }}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Tagihan: {{ $invoice->invoice_number }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ route('admin.tagihan.update', $invoice->id) }}">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Jumlah Tagihan (Rp)</label>
+                        <input type="number" name="amount" class="form-control" value="{{ (int)$invoice->amount }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tanggal Jatuh Tempo</label>
+                        <input type="date" name="due_date" class="form-control" value="{{ \Carbon\Carbon::parse($invoice->due_date)->format('Y-m-d') }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-select" required>
+                            <option value="unpaid" {{ $invoice->status == 'unpaid' ? 'selected' : '' }}>Belum Lunas (Unpaid)</option>
+                            <option value="paid" {{ $invoice->status == 'paid' ? 'selected' : '' }}>Lunas (Paid)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 <!-- ============================================== -->
 <!-- MODAL GENERATE TAGIHAN MASSAL -->

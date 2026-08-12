@@ -60,6 +60,26 @@ class InvoiceController extends Controller
         return redirect()->route('admin.tagihan.index')->with('success', 'Tagihan berhasil dibuat!');
     }
 
+    // Memperbarui tagihan (Edit)
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'due_date' => 'required|date',
+            'status' => 'required|in:unpaid,paid',
+        ]);
+
+        $invoice = Invoice::findOrFail($id);
+        
+        $invoice->update([
+            'amount' => $request->amount,
+            'due_date' => $request->due_date,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.tagihan.index')->with('success', 'Data tagihan berhasil diperbarui!');
+    }
+
     // FITUR CERDAS: Generate Tagihan Massal Berdasarkan Paket Masing-Masing Pelanggan
     public function generateBulk(Request $request)
     {
