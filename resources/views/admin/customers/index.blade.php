@@ -230,9 +230,14 @@
                                         </div>
                                         <hr class="my-3">
                                         <div class="form-group mb-3">
-                                            <label for="tanggal_tagihan">Tanggal Jatuh Tempo</label>
-                                            <input type="number" name="tanggal_tagihan" class="form-control" value="{{ $customer->tanggal_tagihan }}" min="1" max="28" required>
-                                            <small class="text-muted">Pilih tanggal 1 - 28</small>
+                                            <label for="tanggal_tagihan">Tanggal Jatuh Tempo (Siklus Bulanan)</label>
+                                            @php
+                                                $tgl = $customer->tanggal_tagihan ?: 1;
+                                                $safeDay = min($tgl, \Carbon\Carbon::now()->daysInMonth);
+                                                $dummyDate = \Carbon\Carbon::now()->setDay($safeDay)->format('Y-m-d');
+                                            @endphp
+                                            <input type="date" name="tanggal_tagihan" class="form-control" value="{{ $customer->tanggal_tagihan ? $dummyDate : '' }}" required>
+                                            <small class="text-muted">Sistem hanya akan mengambil <strong>Tanggal (Hari)</strong>-nya saja sebagai siklus bulanan.</small>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">Password Baru <span class="text-muted" style="font-size: 11px;">(Kosongkan jika tidak ingin diubah)</span></label>
@@ -328,9 +333,9 @@
                     </div>
                     <hr class="my-3">
                     <div class="form-group mb-3">
-                        <label for="tanggal_tagihan">Tanggal Jatuh Tempo</label>
-                        <input type="number" name="tanggal_tagihan" class="form-control" placeholder="Contoh: 5" min="1" max="28" required>
-                        <small class="text-muted">Pilih tanggal 1 - 28</small>
+                        <label for="tanggal_tagihan">Tanggal Jatuh Tempo (Siklus Bulanan)</label>
+                        <input type="date" name="tanggal_tagihan" class="form-control" required>
+                        <small class="text-muted">Sistem hanya akan mengambil <strong>Tanggal (Hari)</strong>-nya saja sebagai siklus bulanan.</small>
                     </div>
                 </div>
                 <div class="modal-footer">

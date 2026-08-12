@@ -47,7 +47,7 @@ class CustomerController extends Controller
             'package_id' => 'nullable|exists:packages,id', // Validasi paket
             
             // --- TAMBAHAN KITA: Validasi Tanggal Tagihan ---
-            'tanggal_tagihan' => 'required|integer|min:1|max:28', 
+            'tanggal_tagihan' => 'required|date', 
             'router_user' => 'nullable|string|max:255',
             'router_password' => 'nullable|string|max:255',
             'router_profile' => 'nullable|string|max:255',
@@ -63,7 +63,7 @@ class CustomerController extends Controller
             'package_id' => $request->package_id, // Simpan paket pelanggan
             
             // --- TAMBAHAN KITA: Simpan Tanggal Tagihan ---
-            'tanggal_tagihan' => $request->tanggal_tagihan, 
+            'tanggal_tagihan' => \Carbon\Carbon::parse($request->tanggal_tagihan)->day, 
             
             'router_user' => $request->router_user,
             'router_password' => $request->router_password,
@@ -90,7 +90,7 @@ class CustomerController extends Controller
             'phone' => 'required|string|max:25',
             'address' => 'nullable|string',
             'package_id' => 'nullable|exists:packages,id',
-            'tanggal_tagihan' => 'nullable|integer|min:1|max:28', 
+            'tanggal_tagihan' => 'nullable|date', 
             'status' => 'required|in:aktif,diisolir',
             'password' => 'nullable|string|min:6',
             'router_user' => 'nullable|string|max:255',
@@ -106,7 +106,7 @@ class CustomerController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
             'package_id' => $request->package_id,
-            'tanggal_tagihan' => $request->tanggal_tagihan,
+            'tanggal_tagihan' => $request->tanggal_tagihan ? \Carbon\Carbon::parse($request->tanggal_tagihan)->day : null,
             'status' => $request->status, 
             'router_user' => $request->router_user,
             'router_password' => $request->router_password,
