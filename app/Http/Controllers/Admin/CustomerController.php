@@ -30,7 +30,7 @@ class CustomerController extends Controller
             $query->where('status', $request->status);
         }
 
-        $customers = $query->with('package')->get();
+        $customers = $query->with('package')->paginate(10);
         $packages  = Package::all();
 
         return view('admin.customers.index', compact('customers', 'packages'));
@@ -177,6 +177,13 @@ class CustomerController extends Controller
                 $tgl_bayar = trim($tgl_bayar);
                 if (is_numeric($tgl_bayar)) {
                     $tagihan_val = (int)$tgl_bayar;
+                } else {
+                    try {
+                        $parsedDate = \Carbon\Carbon::parse(str_replace('/', '-', $tgl_bayar));
+                        $tagihan_val = (int)$parsedDate->format('d');
+                    } catch (\Exception $e) {
+                        $tagihan_val = null;
+                    }
                 }
             }
 
