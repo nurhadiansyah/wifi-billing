@@ -12,9 +12,25 @@ use Illuminate\Support\Facades\Http;
 class InvoiceController extends Controller
 {
     // Menampilkan daftar tagihan
-    public function index()
+    public function index(Request $request)
     {
-        $invoices = Invoice::with('user')->latest()->get();
+        $query = Invoice::with('user')->latest();
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('invoice_number', 'LIKE', "%{$search}%")
+                  ->orWhereHas('user', function($userQuery) use ($search) {
+                      $userQuery->where('name', 'LIKE', "%{$search}%");
+                  });
+            });
+        }
+
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        $invoices = $query->paginate(10);
         $customers = User::where('role', 'client')->get();
         $packages = Package::all();
         

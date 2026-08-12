@@ -22,22 +22,43 @@
 @endif
 
 <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <h5 class="mb-0">Daftar Tagihan Bulanan</h5>
-        <div class="d-flex gap-2 flex-wrap">
-            <form action="{{ route('admin.tagihan.waBulk') }}" method="POST" class="m-0" onsubmit="return confirm('Yakin ingin mengirim pesan WhatsApp ke SEMUA pelanggan yang belum lunas? Pastikan token Whatbizz valid.');">
-                @csrf
-                <button type="submit" class="btn btn-info">
-                    <i class='bx bxl-whatsapp me-1'></i> Broadcast WA
+    <div class="card-header d-flex flex-column gap-3">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h5 class="mb-0">Daftar Tagihan Bulanan</h5>
+            <div class="d-flex gap-2 flex-wrap">
+                <form action="{{ route('admin.tagihan.waBulk') }}" method="POST" class="m-0" onsubmit="return confirm('Yakin ingin mengirim pesan WhatsApp ke SEMUA pelanggan yang belum lunas? Pastikan token Whatbizz valid.');">
+                    @csrf
+                    <button type="submit" class="btn btn-info">
+                        <i class='bx bxl-whatsapp me-1'></i> Broadcast WA
+                    </button>
+                </form>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGenerateBulk">
+                    <i class='bx bx-bolt-circle me-1'></i> Buat Tagihan (Massal)
                 </button>
-            </form>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGenerateBulk">
-                <i class='bx bx-bolt-circle me-1'></i> Buat Tagihan (Massal)
-            </button>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
-                <i class='bx bx-plus me-1'></i> Buat Tagihan Satuan
-            </button>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
+                    <i class='bx bx-plus me-1'></i> Buat Tagihan Satuan
+                </button>
+            </div>
         </div>
+        
+        <form method="GET" action="{{ route('admin.tagihan.index') }}" class="d-flex align-items-center gap-2 flex-wrap">
+            <div class="input-group input-group-merge" style="width: 250px;">
+                <span class="input-group-text"><i class="bx bx-search"></i></span>
+                <input type="text" name="search" class="form-control form-control-sm" placeholder="Cari no. tagihan / pelanggan..." value="{{ request('search') }}">
+            </div>
+
+            <select name="status" class="form-select form-select-sm" style="width: 150px;" onchange="this.form.submit()">
+                <option value="">Semua Status</option>
+                <option value="unpaid" {{ request('status') == 'unpaid' ? 'selected' : '' }}>Belum Bayar</option>
+                <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Lunas</option>
+            </select>
+
+            @if(request('search') || request('status'))
+                <a href="{{ route('admin.tagihan.index') }}" class="btn btn-sm btn-outline-secondary" title="Reset Filter">
+                    <i class="bx bx-reset"></i>
+                </a>
+            @endif
+        </form>
     </div>
     
     <div class="table-responsive text-nowrap">
@@ -100,6 +121,10 @@
                 @endforelse
             </tbody>
         </table>
+
+        <div class="d-flex justify-content-center mt-4">
+            {{ $invoices->appends(request()->query())->links('pagination::bootstrap-5') }}
+        </div>
     </div>
 </div>
 
