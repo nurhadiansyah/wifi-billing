@@ -51,6 +51,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::put('/pelanggan/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('pelanggan.update');
     Route::delete('/pelanggan/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('pelanggan.destroy');
 
+    // Halaman Broadcast Gangguan
+    Route::get('/broadcast', [App\Http\Controllers\Admin\BroadcastController::class, 'index'])->name('broadcast.index');
+    Route::post('/broadcast/send', [App\Http\Controllers\Admin\BroadcastController::class, 'send'])->name('broadcast.send');
+
     // Halaman Paket WiFi
     Route::get('/paket', [App\Http\Controllers\Admin\PackageController::class, 'index'])->name('paket.index');
     Route::post('/paket', [App\Http\Controllers\Admin\PackageController::class, 'store'])->name('paket.store');

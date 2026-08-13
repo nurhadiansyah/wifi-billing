@@ -124,6 +124,14 @@
                             </a>
                         </li>
 
+                        <!-- Menu Broadcast Gangguan -->
+                        <li class="menu-item {{ request()->routeIs('admin.broadcast.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.broadcast.index') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-broadcast"></i>
+                                <div data-i18n="Broadcast">Broadcast Gangguan</div>
+                            </a>
+                        </li>
+
                         <!-- Menu Paket WiFi -->
                         <li class="menu-item {{ request()->routeIs('admin.paket.*') ? 'active' : '' }}">
                             <a href="{{ route('admin.paket.index') }}" class="menu-link">
