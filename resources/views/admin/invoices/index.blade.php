@@ -89,6 +89,10 @@
                         </td>
                         <td>
                             @if($invoice->status == 'unpaid')
+                                <button type="button" class="btn btn-sm btn-icon btn-outline-dark" onclick="copyPaymentLink('{{ route('public.payment.checkout', $invoice->invoice_number) }}')" title="Copy Link Pembayaran">
+                                    <i class="bx bx-qr"></i>
+                                </button>
+
                                 <form action="{{ route('admin.tagihan.wa', $invoice->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     <button type="submit" class="btn btn-sm btn-icon btn-outline-info" title="Kirim WA Pengingat">
@@ -262,5 +266,16 @@
             dropdownParent: $('#modalTambahTagihan')
         });
     });
+
+    function copyPaymentLink(url) {
+        var tempInput = document.createElement("input");
+        tempInput.style = "position: absolute; left: -1000px; top: -1000px";
+        tempInput.value = url;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert("Link pembayaran berhasil disalin!\n" + url);
+    }
 </script>
 @endsection

@@ -131,3 +131,9 @@ Route::middleware(['auth'])->group(function () {
 
 // Callback Webhook Tripay (Taruh di luar grup auth)
 Route::post('/tripay/callback', [App\Http\Controllers\Client\PaymentController::class, 'callback']);
+
+// ==========================================
+// RUTE PEMBAYARAN PUBLIK (TANPA LOGIN)
+// ==========================================
+Route::get('/pay/{invoice_number}', [App\Http\Controllers\PublicPaymentController::class, 'checkout'])->name('public.payment.checkout');
+Route::post('/pay/{invoice_number}', [App\Http\Controllers\PublicPaymentController::class, 'store'])->name('public.payment.store');
