@@ -21,7 +21,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin.pelanggan.broadcast.send') }}" method="POST">
+                <form action="{{ route('admin.broadcast.send') }}" method="POST">
                     @csrf
                     
                     <div class="mb-3">
