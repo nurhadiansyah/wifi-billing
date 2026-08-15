@@ -144,13 +144,9 @@
 
 							<form action="{{ route('public.check-bill.post') }}" method="POST">
 								@csrf
-								<div class="form-group mb-3 text-left">
-									<label for="email" style="font-weight: 600;">Email Terdaftar</label>
-									<input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="contoh@email.com" required style="border-radius: 10px; font-size: 15px;">
-								</div>
 								<div class="form-group mb-4 text-left">
-									<label for="phone" style="font-weight: 600;">Nomor Telepon (WhatsApp)</label>
-									<input type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="Contoh: 081234567890" required style="border-radius: 10px; font-size: 15px;">
+									<label for="identifier" style="font-weight: 600;">Email atau Nomor Telepon (WhatsApp)</label>
+									<input type="text" class="form-control form-control-lg" id="identifier" name="identifier" placeholder="contoh@email.com atau 081234..." required style="border-radius: 10px; font-size: 15px;">
 								</div>
 								<button type="submit" class="btn btn-primary btn-block btn-lg" style="border-radius: 10px; background-color: #6366f1; border: none; font-weight: 700; width: 100%;">
 									<i class="fa fa-search mr-2"></i> Cek Tagihan

@@ -16,19 +16,22 @@ class PublicPaymentController extends Controller
     public function checkBill(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'phone' => 'required|string',
+            'identifier' => 'required|string',
         ]);
+
+        $identifier = $request->identifier;
 
         $user = User::with(['invoices' => function($query) {
                         $query->orderBy('due_date', 'desc');
                     }])
-                    ->where('email', $request->email)
-                    ->where('phone', $request->phone)
+                    ->where(function($query) use ($identifier) {
+                        $query->where('email', $identifier)
+                              ->orWhere('phone', $identifier);
+                    })
                     ->first();
 
         if (!$user) {
-            return redirect()->to(url('/#section-cek-tagihan'))->with('error', 'Data tidak ditemukan. Pastikan Email dan Nomor Telepon sesuai dengan yang didaftarkan.');
+            return redirect()->to(url('/#section-cek-tagihan'))->with('error', 'Data tidak ditemukan. Pastikan Email atau Nomor Telepon sesuai dengan yang didaftarkan.');
         }
 
         return view('public.payment.check', compact('user'));
