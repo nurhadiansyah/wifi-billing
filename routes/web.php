@@ -139,5 +139,8 @@ Route::post('/tripay/callback', [App\Http\Controllers\Client\PaymentController::
 // ==========================================
 // RUTE PEMBAYARAN PUBLIK (TANPA LOGIN)
 // ==========================================
+Route::post('/cek-tagihan', [App\Http\Controllers\PublicPaymentController::class, 'checkBill'])->name('public.check-bill.post');
+Route::get('/cek-tagihan', function() { return redirect('/'); })->name('public.check-bill.get');
+
 Route::get('/pay/{invoice_number}', [App\Http\Controllers\PublicPaymentController::class, 'checkout'])->name('public.payment.checkout');
 Route::post('/pay/{invoice_number}', [App\Http\Controllers\PublicPaymentController::class, 'store'])->name('public.payment.store');

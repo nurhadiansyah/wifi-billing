@@ -123,6 +123,47 @@
 		</div>
 	</div>
 	<!-- /.Section Slider 1 -->
+
+	<!-- Section Cek Tagihan -->
+	<div id="section-cek-tagihan" style="background: #f8f9fa; padding: 60px 0;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 col-lg-6">
+					<div class="card shadow-sm border-0 ez-animate" data-animation="fadeInUp" style="border-radius: 15px;">
+						<div class="card-body p-4 p-md-5">
+							<div class="text-center mb-4">
+								<h2 class="font-weight-bold" style="color: #0f172a;">Cek Tagihan Anda</h2>
+								<p class="text-muted">Masukkan Email dan Nomor Telepon yang terdaftar untuk melihat dan membayar tagihan internet Anda.</p>
+							</div>
+							
+                            @if(session('error'))
+                                <div class="alert alert-danger" style="border-radius: 10px;">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+							<form action="{{ route('public.check-bill.post') }}" method="POST">
+								@csrf
+								<div class="form-group mb-3 text-left">
+									<label for="email" style="font-weight: 600;">Email Terdaftar</label>
+									<input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="contoh@email.com" required style="border-radius: 10px; font-size: 15px;">
+								</div>
+								<div class="form-group mb-4 text-left">
+									<label for="phone" style="font-weight: 600;">Nomor Telepon (WhatsApp)</label>
+									<input type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="Contoh: 081234567890" required style="border-radius: 10px; font-size: 15px;">
+								</div>
+								<button type="submit" class="btn btn-primary btn-block btn-lg" style="border-radius: 10px; background-color: #6366f1; border: none; font-weight: 700; width: 100%;">
+									<i class="fa fa-search mr-2"></i> Cek Tagihan
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.Section Cek Tagihan -->
+
 	<!-- Section Features 1 -->
 	<div id="section-features1">
 		<div class="container">

@@ -5,10 +5,35 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Invoice;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 class PublicPaymentController extends Controller
 {
+    // =================================================================
+    // 0. CEK TAGIHAN DARI LANDING PAGE
+    // =================================================================
+    public function checkBill(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'phone' => 'required|string',
+        ]);
+
+        $user = User::with(['invoices' => function($query) {
+                        $query->orderBy('due_date', 'desc');
+                    }])
+                    ->where('email', $request->email)
+                    ->where('phone', $request->phone)
+                    ->first();
+
+        if (!$user) {
+            return redirect()->to(url('/#section-cek-tagihan'))->with('error', 'Data tidak ditemukan. Pastikan Email dan Nomor Telepon sesuai dengan yang didaftarkan.');
+        }
+
+        return view('public.payment.check', compact('user'));
+    }
+
     // =================================================================
     // 1. TAMPILKAN HALAMAN PILIH METODE PEMBAYARAN PUBLIK
     // =================================================================
