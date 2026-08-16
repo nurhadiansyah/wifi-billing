@@ -37,22 +37,25 @@ class InvoiceController extends Controller
         return view('admin.invoices.index', compact('invoices', 'customers', 'packages'));
     }
 
-    // Menyimpan tagihan manual (satuan)
     public function store(Request $request)
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'package_id' => 'required|exists:packages,id',
             'due_date' => 'required|date',
         ]);
 
-        $package = Package::findOrFail($request->package_id);
+        $user = User::with('package')->findOrFail($request->user_id);
+        
+        if (!$user->package) {
+            return redirect()->back()->with('error', 'Pelanggan belum memiliki paket WiFi.');
+        }
+
         $invoiceNumber = 'INV-' . date('Ymd') . '-' . rand(1000, 9999);
 
         Invoice::create([
             'user_id' => $request->user_id,
             'invoice_number' => $invoiceNumber,
-            'amount' => $package->price,
+            'amount' => $user->package->price,
             'due_date' => $request->due_date,
             'status' => 'unpaid',
         ]);

@@ -32,9 +32,7 @@
                         <i class='bx bxl-whatsapp me-1'></i> Broadcast WA
                     </button>
                 </form>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalGenerateBulk">
-                    <i class='bx bx-bolt-circle me-1'></i> Buat Tagihan (Massal)
-                </button>
+
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambahTagihan">
                     <i class='bx bx-plus me-1'></i> Buat Tagihan Satuan
                 </button>
@@ -232,15 +230,7 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label">Pilih Paket WiFi (Menentukan Harga)</label>
-                        <select name="package_id" class="form-select" required>
-                            <option value="">-- Pilih Paket --</option>
-                            @foreach($packages as $package)
-                                <option value="{{ $package->id }}">{{ $package->name }} - Rp {{ number_format($package->price, 0, ',', '.') }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
 
                     <div class="mb-3">
                         <label class="form-label">Tanggal Jatuh Tempo</label>
