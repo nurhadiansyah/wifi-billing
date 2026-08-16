@@ -122,10 +122,13 @@
                                 @endphp
                                 <span class="badge bg-info text-dark">{{ $tagihanDate->day }} {{ $namaBulan }} {{ $tagihanDate->year }}</span>
                                 @php
+                                    $totalInvoices = \App\Models\Invoice::where('user_id', $customer->id)->count();
                                     $unpaidCount = \App\Models\Invoice::where('user_id', $customer->id)->where('status', 'unpaid')->count();
                                 @endphp
                                 @if($unpaidCount > 0)
                                     <div class="mt-1"><span class="badge bg-label-danger" style="font-size: 10px;">Belum Bayar</span></div>
+                                @elseif($totalInvoices == 0)
+                                    <div class="mt-1"><span class="badge bg-label-warning" style="font-size: 10px;">Belum Ada Tagihan</span></div>
                                 @else
                                     <div class="mt-1"><span class="badge bg-label-success" style="font-size: 10px;">Lunas</span></div>
                                 @endif

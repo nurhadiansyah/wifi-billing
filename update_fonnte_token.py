@@ -7,7 +7,7 @@ password = 'Alifah.23'
 remote_base = 'domains/dreamnetindonesia.com/public_html'
 
 commands = [
-    f"cd {remote_base} && sed -i 's|^FONNTE_TOKEN=.*|FONNTE_TOKEN=\"8n3cmTucu9775B8ENcfA\"|' .env",
+    f"cd {remote_base} && sed -i 's|^FONNTE_TOKEN=.*|FONNTE_TOKEN=\"yJ2bXYSJjvpoUiWiUKfK\"|' .env",
     f"cd {remote_base} && /usr/bin/php artisan config:clear",
     f"cd {remote_base} && /usr/bin/php artisan cache:clear",
 ]
