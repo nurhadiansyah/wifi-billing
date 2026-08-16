@@ -30,10 +30,18 @@ class CustomerController extends Controller
             $query->where('status', $request->status);
         }
 
+        // Jika admin memilih filter NAS
+        if ($request->has('nas') && $request->nas != '') {
+            $query->where('router_nas', $request->nas);
+        }
+
         $customers = $query->with('package')->paginate(10);
         $packages  = Package::all();
 
-        return view('admin.customers.index', compact('customers', 'packages'));
+        // Ambil daftar unik NAS untuk dropdown filter
+        $nasOptions = User::where('role', 'client')->whereNotNull('router_nas')->where('router_nas', '!=', '')->distinct()->pluck('router_nas');
+
+        return view('admin.customers.index', compact('customers', 'packages', 'nasOptions'));
     }
 
     // Memproses tambah pelanggan

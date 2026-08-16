@@ -41,7 +41,15 @@
                 <option value="diisolir" {{ request('status') == 'diisolir' ? 'selected' : '' }}>Diisolir</option>
             </select>
 
-            @if(request('search') || request('status'))
+            <!-- Dropdown Filter NAS -->
+            <select name="nas" class="form-select form-select-sm" style="width: 130px;" onchange="this.form.submit()">
+                <option value="">Semua NAS</option>
+                @foreach($nasOptions as $nas)
+                    <option value="{{ $nas }}" {{ request('nas') == $nas ? 'selected' : '' }}>{{ $nas }}</option>
+                @endforeach
+            </select>
+
+            @if(request('search') || request('status') || request('nas'))
                 <a href="{{ route('admin.pelanggan.index') }}" class="btn btn-sm btn-outline-secondary" title="Reset Filter">
                     <i class="bx bx-reset"></i>
                 </a>
