@@ -11,8 +11,9 @@ try:
     client = paramiko.SSHClient()
     client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     client.connect(hostname, port=port, username=username, password=password, timeout=10)
-    cmd = f"cd {path} && git reset --hard && rm -f app/Console/Commands/GenerateDailyInvoices.php && git pull origin main && php artisan config:clear && php artisan view:clear"
-
+    
+    cmd = "curl -I -s --connect-timeout 5 https://whatsbizapi.com"
+    
     stdin, stdout, stderr = client.exec_command(cmd)
     
     print("=== STDOUT ===")

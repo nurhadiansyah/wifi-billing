@@ -98,6 +98,7 @@
                             <th>Jatuh Tempo</th>
                             <th>Total Tagihan</th>
                             <th>Status Pembayaran</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -113,10 +114,17 @@
                                         <span class="badge bg-label-danger"><i class="bx bx-x"></i> Belum Lunas</span>
                                     @endif
                                 </td>
+                                <td>
+                                    @if($invoice->status != 'paid')
+                                        <a href="{{ route('client.payment.checkout', $invoice->id) }}" class="btn btn-sm btn-primary">Bayar Tagihan</a>
+                                    @else
+                                        <span class="text-muted">-</span>
+                                    @endif
+                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="4" class="text-center py-4 text-muted">Hore! Tidak ada catatan tagihan saat ini.</td>
+                                <td colspan="5" class="text-center py-4 text-muted">Hore! Tidak ada catatan tagihan saat ini.</td>
                             </tr>
                         @endforelse
                     </tbody>
