@@ -56,7 +56,7 @@
               <div class="app-brand justify-content-center">
                 <a href="{{ url('/') }}" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
-                    <img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;">
+                    <img src="{{ asset('assets1/images/dreamnet.svg') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;">
                   </span>
                 </a>
               </div>

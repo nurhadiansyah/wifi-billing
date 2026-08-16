@@ -39,7 +39,7 @@
                 <div class="app-brand demo">
                     <a href="javascript:void(0);" class="app-brand-link">
                         <span class="app-brand-logo demo">
-                            <img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;">
+                            <img src="{{ asset('assets1/images/dreamnet.svg') }}" alt="DreamNetIndonesia" style="width: 150px; height: auto;">
                         </span>
                     </a>
 

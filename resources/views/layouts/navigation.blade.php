@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets1/images/logo.png') }}" alt="DreamNetIndonesia" class="block h-9 w-auto" style="max-height: 36px;">
+                        <img src="{{ asset('assets1/images/dreamnet.svg') }}" alt="DreamNetIndonesia" class="block h-9 w-auto" style="max-height: 36px;">
                     </a>
                 </div>
 
