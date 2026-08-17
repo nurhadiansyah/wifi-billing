@@ -18,7 +18,7 @@
     <!-- Title -->
     <title>DreamNet Indonesia</title>
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets1/images/favicon.png') }}">
     <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('assets1/css/bootstrap.min.css') }}" type="text/css">
     <!-- Swiper Slider -->
