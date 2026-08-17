@@ -246,10 +246,13 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
 <!-- Tambahkan Skrip JavaScript untuk Mengaktifkan Select2 di dalam Modal -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+    $(document).ready(function() {
         // Inisialisasi Select2 khusus untuk modal tambah tagihan agar kolom pencariannya bisa diklik
         $('.select2-customer').select2({
             theme: 'bootstrap-5',
