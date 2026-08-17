@@ -16,7 +16,7 @@
     <meta name="description" content="Sistem Tagihan WiFi" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets1/images/favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('assets1/images/favicon.png') }}?v=2" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
