@@ -171,6 +171,7 @@ class InvoiceController extends Controller
                 'target' => $target,
                 'message' => $message,
                 'countryCode' => '62',
+                'delay' => '2', // Jeda 2 detik antar pesan (mencegah banned/spam)
             ]);
             
             // Log response API ke dalam storage/logs/laravel.log
