@@ -164,8 +164,8 @@
                             </a>
                         </li>
                         <!-- Menu Pengaturan -->
-                        <li class="menu-item {{ request()->routeIs('pengaturan.*') ? 'active' : '' }}">
-                            <a href="{{ route('pengaturan.index') }}" class="menu-link">
+                        <li class="menu-item {{ request()->routeIs('admin.pengaturan.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.pengaturan.index') }}" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-cog"></i>
                                 <div data-i18n="Pengaturan">Pengaturan</div>
                             </a>
