@@ -37,23 +37,15 @@ class GenerateDailyInvoices extends Command
         
         $today = Carbon::today();
         $targetDate = $today->copy()->addDays($daysBefore);
-        $targetDay = $targetDate->day;
-        
-        // Handle end of month edge cases (e.g., if target date is Feb 28, we might need to bill people with billing date 29, 30, 31)
-        $isLastDayOfMonth = $targetDate->copy()->endOfMonth()->isSameDay($targetDate);
+        $targetDateString = $targetDate->format('Y-m-d');
         
         $clientsQuery = User::where('role', 'client')
             ->whereNotNull('package_id')
             ->whereNotNull('tanggal_tagihan')
             ->with('package');
 
-        if ($isLastDayOfMonth) {
-            // Bill everyone whose billing date is targetDay OR greater (since this month is shorter)
-            $clientsQuery->where('tanggal_tagihan', '>=', $targetDay);
-        } else {
-            // Bill only those whose billing date is exactly targetDay
-            $clientsQuery->where('tanggal_tagihan', $targetDay);
-        }
+        // Bill everyone whose billing date is on or before the target date
+        $clientsQuery->whereDate('tanggal_tagihan', '<=', $targetDateString);
 
         $clients = $clientsQuery->get();
         $generatedCount = 0;
@@ -77,6 +69,10 @@ class GenerateDailyInvoices extends Command
                     'due_date' => $targetDate->format('Y-m-d'), // Jatuh tempo sesuai target date
                     'status' => 'unpaid',
                 ]);
+                
+                // Majukan tanggal tagihan ke bulan depan
+                $nextMonthDate = Carbon::parse($client->tanggal_tagihan)->addMonthNoOverflow()->format('Y-m-d');
+                $client->update(['tanggal_tagihan' => $nextMonthDate]);
                 
                 $generatedCount++;
 

@@ -114,16 +114,7 @@
                         <td>
                             @if($customer->tanggal_tagihan)
                                 @php
-                                    $today = \Carbon\Carbon::today();
-                                    $tgl = $customer->tanggal_tagihan;
-                                    $daysInMonth = $today->daysInMonth;
-                                    $safeDay = $tgl > $daysInMonth ? $daysInMonth : $tgl;
-                                    $tagihanDate = \Carbon\Carbon::createFromDate($today->year, $today->month, $safeDay);
-                                    
-                                    if ($today->day > $safeDay) {
-                                        $tagihanDate->addMonthNoOverflow();
-                                        $tagihanDate->day = min($tgl, $tagihanDate->daysInMonth);
-                                    }
+                                    $tagihanDate = \Carbon\Carbon::parse($customer->tanggal_tagihan);
                                     
                                     $bulanIndo = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
                                     $namaBulan = $bulanIndo[$tagihanDate->month - 1];
@@ -242,13 +233,8 @@
                                         <hr class="my-3">
                                         <div class="form-group mb-3">
                                             <label for="tanggal_tagihan">Tanggal Jatuh Tempo (Siklus Bulanan)</label>
-                                            <select name="tanggal_tagihan" class="form-select" required>
-                                                <option value="">Pilih Tanggal Jatuh Tempo</option>
-                                                @for($i = 1; $i <= 31; $i++)
-                                                    <option value="{{ $i }}" {{ $customer->tanggal_tagihan == $i ? 'selected' : '' }}>Setiap Tanggal {{ $i }}</option>
-                                                @endfor
-                                            </select>
-                                            <small class="text-muted">Siklus bulanan untuk pelanggan ini.</small>
+                                            <input type="date" name="tanggal_tagihan" class="form-control" value="{{ $customer->tanggal_tagihan ? \Carbon\Carbon::parse($customer->tanggal_tagihan)->format('Y-m-d') : '' }}" required>
+                                            <small class="text-muted">Tanggal penagihan berikutnya untuk pelanggan ini.</small>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">Password Baru <span class="text-muted" style="font-size: 11px;">(Kosongkan jika tidak ingin diubah)</span></label>
@@ -345,13 +331,8 @@
                     <hr class="my-3">
                     <div class="form-group mb-3">
                         <label for="tanggal_tagihan">Tanggal Jatuh Tempo (Siklus Bulanan)</label>
-                        <select name="tanggal_tagihan" class="form-select" required>
-                            <option value="">Pilih Tanggal Jatuh Tempo</option>
-                            @for($i = 1; $i <= 31; $i++)
-                                <option value="{{ $i }}">Setiap Tanggal {{ $i }}</option>
-                            @endfor
-                        </select>
-                        <small class="text-muted">Siklus bulanan untuk pelanggan ini.</small>
+                        <input type="date" name="tanggal_tagihan" class="form-control" required>
+                        <small class="text-muted">Tanggal penagihan berikutnya untuk pelanggan ini.</small>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -55,7 +55,7 @@ class CustomerController extends Controller
             'package_id' => 'nullable|exists:packages,id', // Validasi paket
             
             // --- TAMBAHAN KITA: Validasi Tanggal Tagihan ---
-            'tanggal_tagihan' => 'required|integer|min:1|max:31', 
+            'tanggal_tagihan' => 'required|date', 
             'router_user' => 'nullable|string|max:255',
             'router_password' => 'nullable|string|max:255',
             'router_profile' => 'nullable|string|max:255',
@@ -98,7 +98,7 @@ class CustomerController extends Controller
             'phone' => 'required|string|max:25',
             'address' => 'nullable|string',
             'package_id' => 'nullable|exists:packages,id',
-            'tanggal_tagihan' => 'required|integer|min:1|max:31', 
+            'tanggal_tagihan' => 'required|date', 
             'status' => 'required|in:aktif,diisolir',
             'password' => 'nullable|string|min:6',
             'router_user' => 'nullable|string|max:255',

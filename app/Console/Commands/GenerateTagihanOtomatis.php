@@ -18,10 +18,7 @@ class GenerateTagihanOtomatis extends Command
         // 1. Menentukan Tanggal Jatuh Tempo (H-3 dari hari ini)
         $tanggalJatuhTempo = Carbon::now()->addDays(3);
         
-        // Mengambil angka tanggalnya saja (misal: 8) untuk mencari di tabel users
-        $targetTanggal = (int) $tanggalJatuhTempo->format('j'); 
-        
-        // Format tanggal lengkap (YYYY-MM-DD) untuk disimpan ke kolom due_date
+        // Format tanggal lengkap (YYYY-MM-DD) untuk mencari di tabel users dan disimpan ke kolom due_date
         $dueDateString = $tanggalJatuhTempo->format('Y-m-d');
         
         // Ambil bulan dan tahun untuk pengecekan agar tidak dobel tagihan
@@ -29,8 +26,10 @@ class GenerateTagihanOtomatis extends Command
         $tahunIni = $tanggalJatuhTempo->format('Y');
 
         // 2. Cari pelanggan yang jatuh temponya 3 hari lagi dan punya paket
+        // Kita cek yang <= dueDateString supaya tagihan yang terlewat juga ter-generate
         $pelanggan = User::where('status', 'aktif')
-                        ->where('tanggal_tagihan', $targetTanggal)
+                        ->whereNotNull('tanggal_tagihan')
+                        ->whereDate('tanggal_tagihan', '<=', $dueDateString)
                         ->whereNotNull('package_id') 
                         ->with('package') 
                         ->get();
@@ -64,6 +63,10 @@ class GenerateTagihanOtomatis extends Command
                         'due_date'       => $dueDateString, // Kolom dari gambar
                         'status'         => 'unpaid', // Kolom dari gambar
                     ]);
+                    
+                    // Majukan tanggal tagihan ke bulan depan
+                    $nextMonthDate = Carbon::parse($user->tanggal_tagihan)->addMonthNoOverflow()->format('Y-m-d');
+                    $user->update(['tanggal_tagihan' => $nextMonthDate]);
                     
                     $jumlahDiterbitkan++;
                 }
