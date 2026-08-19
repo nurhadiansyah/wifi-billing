@@ -36,6 +36,20 @@
                         </div>
                     </div>
 
+                    <div class="mb-3 mt-4">
+                        <label class="form-label" for="reminder_days_before">Waktu Pengiriman Tagihan (H-X)</label>
+                        <select class="form-select" id="reminder_days_before" name="reminder_days_before">
+                            <option value="0" {{ old('reminder_days_before', $setting->reminder_days_before) == 0 ? 'selected' : '' }}>Hari H (Tepat saat Jatuh Tempo)</option>
+                            <option value="1" {{ old('reminder_days_before', $setting->reminder_days_before) == 1 ? 'selected' : '' }}>H-1 (1 Hari sebelum Jatuh Tempo)</option>
+                            <option value="2" {{ old('reminder_days_before', $setting->reminder_days_before) == 2 ? 'selected' : '' }}>H-2 (2 Hari sebelum Jatuh Tempo)</option>
+                            <option value="3" {{ old('reminder_days_before', $setting->reminder_days_before) == 3 ? 'selected' : '' }}>H-3 (3 Hari sebelum Jatuh Tempo)</option>
+                            <option value="7" {{ old('reminder_days_before', $setting->reminder_days_before) == 7 ? 'selected' : '' }}>H-7 (7 Hari sebelum Jatuh Tempo)</option>
+                        </select>
+                        <div class="form-text">
+                            Pilih kapan sistem harus membuat tagihan dan mengirimkan pengingat WhatsApp kepada pelanggan. Tanggal bayar di tagihan akan tetap sama.
+                        </div>
+                    </div>
+
                     <div class="mt-4">
                         <button type="submit" class="btn btn-primary">Simpan Pengaturan</button>
                     </div>

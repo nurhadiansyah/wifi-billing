@@ -9,5 +9,5 @@ class Setting extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['fonnte_token', 'auto_reminder'];
+    protected $fillable = ['fonnte_token', 'auto_reminder', 'reminder_days_before'];
 }

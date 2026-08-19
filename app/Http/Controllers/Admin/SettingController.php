@@ -26,6 +26,7 @@ class SettingController extends Controller
         $request->validate([
             'fonnte_token' => 'nullable|string',
             'auto_reminder' => 'nullable|boolean',
+            'reminder_days_before' => 'nullable|integer|min:0',
         ]);
 
         $setting = Setting::first();
@@ -36,6 +37,7 @@ class SettingController extends Controller
 
         $setting->fonnte_token = $request->fonnte_token;
         $setting->auto_reminder = $request->has('auto_reminder') ? true : false;
+        $setting->reminder_days_before = $request->reminder_days_before ?? 0;
         
         $setting->save();
 

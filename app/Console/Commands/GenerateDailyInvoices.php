@@ -32,11 +32,15 @@ class GenerateDailyInvoices extends Command
      */
     public function handle()
     {
-        $today = Carbon::today();
-        $currentDay = $today->day;
+        $setting = \App\Models\Setting::first();
+        $daysBefore = $setting ? ($setting->reminder_days_before ?? 0) : 0;
         
-        // Handle end of month edge cases (e.g., if today is Feb 28, we might need to bill people with billing date 29, 30, 31)
-        $isLastDayOfMonth = $today->copy()->endOfMonth()->isToday();
+        $today = Carbon::today();
+        $targetDate = $today->copy()->addDays($daysBefore);
+        $targetDay = $targetDate->day;
+        
+        // Handle end of month edge cases (e.g., if target date is Feb 28, we might need to bill people with billing date 29, 30, 31)
+        $isLastDayOfMonth = $targetDate->copy()->endOfMonth()->isSameDay($targetDate);
         
         $clientsQuery = User::where('role', 'client')
             ->whereNotNull('package_id')
@@ -44,11 +48,11 @@ class GenerateDailyInvoices extends Command
             ->with('package');
 
         if ($isLastDayOfMonth) {
-            // Bill everyone whose billing date is today OR greater than today (since this month is shorter)
-            $clientsQuery->where('tanggal_tagihan', '>=', $currentDay);
+            // Bill everyone whose billing date is targetDay OR greater (since this month is shorter)
+            $clientsQuery->where('tanggal_tagihan', '>=', $targetDay);
         } else {
-            // Bill only those whose billing date is exactly today
-            $clientsQuery->where('tanggal_tagihan', $currentDay);
+            // Bill only those whose billing date is exactly targetDay
+            $clientsQuery->where('tanggal_tagihan', $targetDay);
         }
 
         $clients = $clientsQuery->get();
@@ -58,19 +62,19 @@ class GenerateDailyInvoices extends Command
             // Check if an invoice for THIS MONTH already exists to prevent duplicates
             // An invoice is considered for this month if due_date is in the current month and year
             $exists = Invoice::where('user_id', $client->id)
-                ->whereYear('due_date', $today->year)
-                ->whereMonth('due_date', $today->month)
+                ->whereYear('due_date', $targetDate->year)
+                ->whereMonth('due_date', $targetDate->month)
                 ->exists();
 
             if (!$exists && $client->package) {
                 // Generate Invoice
-                $invoiceNumber = 'INV-' . $today->format('Ymd') . '-' . $client->id . '-' . rand(100, 999);
+                $invoiceNumber = 'INV-' . $targetDate->format('Ymd') . '-' . $client->id . '-' . rand(100, 999);
                 
                 $invoice = Invoice::create([
                     'user_id' => $client->id,
                     'invoice_number' => $invoiceNumber,
                     'amount' => $client->package->price,
-                    'due_date' => $today->format('Y-m-d'), // Jatuh tempo hari yang sama
+                    'due_date' => $targetDate->format('Y-m-d'), // Jatuh tempo sesuai target date
                     'status' => 'unpaid',
                 ]);
                 
