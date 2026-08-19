@@ -77,7 +77,10 @@ class GenerateDailyInvoices extends Command
                 $generatedCount++;
 
                 // Optional: Send WhatsApp using Fonnte API
-                $this->sendWhatsAppNotification($client, $invoice);
+                $setting = \App\Models\Setting::first();
+                if ($setting && $setting->auto_reminder) {
+                    $this->sendWhatsAppNotification($client, $invoice);
+                }
             }
         }
 
@@ -122,7 +125,8 @@ class GenerateDailyInvoices extends Command
                  . "mengatasnamakan Dreamnet\n\n"
                  . "Ini adalah pesan otomatis - mohon untuk tidak membalas langsung ke pesan ini";
 
-        $fonnteToken = env('FONNTE_TOKEN');
+        $setting = \App\Models\Setting::first();
+        $fonnteToken = $setting ? $setting->fonnte_token : env('FONNTE_TOKEN');
         if (empty($fonnteToken)) {
             Log::warning("Fonnte Token is missing, skipping WhatsApp notification for " . $client->name);
             return;

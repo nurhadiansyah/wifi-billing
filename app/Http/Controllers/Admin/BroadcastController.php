@@ -73,7 +73,8 @@ class BroadcastController extends Controller
 
     private function sendFonnteMessage($target, $message)
     {
-        $token = env('FONNTE_TOKEN');
+        $setting = \App\Models\Setting::first();
+        $token = $setting ? $setting->fonnte_token : env('FONNTE_TOKEN');
         if (empty($token)) {
             return false;
         }

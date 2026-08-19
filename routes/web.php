@@ -94,6 +94,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // Rute Import Excel (Cukup tulis 'pelanggan.import' karena otomatis ditambah awalan 'admin.' dari group)
     Route::post('/pelanggan/import', [App\Http\Controllers\Admin\CustomerController::class, 'import'])->name('pelanggan.import');
 
+    // Rute Pengaturan Sistem
+    Route::get('/pengaturan', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('pengaturan.index');
+    Route::post('/pengaturan', [App\Http\Controllers\Admin\SettingController::class, 'store'])->name('pengaturan.store');
+
 });
 
 // ==========================================
