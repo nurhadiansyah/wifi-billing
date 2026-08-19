@@ -242,13 +242,13 @@
                                         <hr class="my-3">
                                         <div class="form-group mb-3">
                                             <label for="tanggal_tagihan">Tanggal Jatuh Tempo (Siklus Bulanan)</label>
-                                            @php
-                                                $tgl = $customer->tanggal_tagihan ?: 1;
-                                                $safeDay = min($tgl, \Carbon\Carbon::now()->daysInMonth);
-                                                $dummyDate = \Carbon\Carbon::now()->setDay($safeDay)->format('Y-m-d');
-                                            @endphp
-                                            <input type="date" name="tanggal_tagihan" class="form-control" value="{{ $customer->tanggal_tagihan ? $dummyDate : '' }}" required>
-                                            <small class="text-muted">Sistem hanya akan mengambil <strong>Tanggal (Hari)</strong>-nya saja sebagai siklus bulanan.</small>
+                                            <select name="tanggal_tagihan" class="form-select" required>
+                                                <option value="">Pilih Tanggal Jatuh Tempo</option>
+                                                @for($i = 1; $i <= 31; $i++)
+                                                    <option value="{{ $i }}" {{ $customer->tanggal_tagihan == $i ? 'selected' : '' }}>Setiap Tanggal {{ $i }}</option>
+                                                @endfor
+                                            </select>
+                                            <small class="text-muted">Siklus bulanan untuk pelanggan ini.</small>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="form-label">Password Baru <span class="text-muted" style="font-size: 11px;">(Kosongkan jika tidak ingin diubah)</span></label>
@@ -345,8 +345,13 @@
                     <hr class="my-3">
                     <div class="form-group mb-3">
                         <label for="tanggal_tagihan">Tanggal Jatuh Tempo (Siklus Bulanan)</label>
-                        <input type="date" name="tanggal_tagihan" class="form-control" required>
-                        <small class="text-muted">Sistem hanya akan mengambil <strong>Tanggal (Hari)</strong>-nya saja sebagai siklus bulanan.</small>
+                        <select name="tanggal_tagihan" class="form-select" required>
+                            <option value="">Pilih Tanggal Jatuh Tempo</option>
+                            @for($i = 1; $i <= 31; $i++)
+                                <option value="{{ $i }}">Setiap Tanggal {{ $i }}</option>
+                            @endfor
+                        </select>
+                        <small class="text-muted">Siklus bulanan untuk pelanggan ini.</small>
                     </div>
                 </div>
                 <div class="modal-footer">
