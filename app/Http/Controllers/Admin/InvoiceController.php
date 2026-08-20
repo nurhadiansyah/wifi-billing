@@ -138,6 +138,9 @@ class InvoiceController extends Controller
             ]);
         }
 
+        // FITUR BARU: Broadcast notifikasi pembayaran lunas ke WhatsApp pelanggan
+        \App\Services\WhatsAppService::sendPaymentSuccessMessage($invoice);
+
         // Kembalikan ke halaman daftar tagihan dengan pesan sukses
         return redirect()->route('admin.tagihan.index')->with('success', 'Status tagihan Lunas, dan Siklus Tagihan pelanggan diperbarui ke tanggal ' . $today->day . ' setiap bulannya!');
     }

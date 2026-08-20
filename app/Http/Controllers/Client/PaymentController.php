@@ -184,6 +184,9 @@ class PaymentController extends Controller
                         'payment_method' => $data->payment_method ?? 'Tripay Payment'
                     ]);
                     
+                    // Broadcast notifikasi WhatsApp
+                    \App\Services\WhatsAppService::sendPaymentSuccessMessage($invoice);
+                    
                     \Log::info('Tripay Invoice updated successfully', ['invoice_number' => $merchantRef]);
                     return response()->json(['success' => true]);
                 }
