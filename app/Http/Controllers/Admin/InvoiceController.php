@@ -132,14 +132,14 @@ class InvoiceController extends Controller
 
         // FITUR BARU: Sesuaikan siklus tanggal tagihan dengan tanggal pembayaran hari ini
         if ($invoice->user) {
-            $todayDay = \Carbon\Carbon::today()->day;
+            $today = \Carbon\Carbon::today();
             $invoice->user->update([
-                'tanggal_tagihan' => $todayDay
+                'tanggal_tagihan' => $today->format('Y-m-d')
             ]);
         }
 
         // Kembalikan ke halaman daftar tagihan dengan pesan sukses
-        return redirect()->route('admin.tagihan.index')->with('success', 'Status tagihan Lunas, dan Siklus Tagihan pelanggan diperbarui ke tanggal ' . $todayDay . ' setiap bulannya!');
+        return redirect()->route('admin.tagihan.index')->with('success', 'Status tagihan Lunas, dan Siklus Tagihan pelanggan diperbarui ke tanggal ' . $today->day . ' setiap bulannya!');
     }
 
     // Menghapus tagihan

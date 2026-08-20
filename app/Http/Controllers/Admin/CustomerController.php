@@ -198,18 +198,23 @@ class CustomerController extends Controller
 
             // Format Tanggal Pembayaran (bisa jadi DateTime atau String/Float dari Excel)
             $tagihan_val = null;
+            $today = \Carbon\Carbon::today();
             if (is_numeric($tgl_bayar)) {
-                $tagihan_val = (int)$tgl_bayar;
+                $day = (int)$tgl_bayar;
+                $safeDay = min($day, $today->daysInMonth);
+                $tagihan_val = $today->copy()->setDay($safeDay)->format('Y-m-d');
             } elseif ($tgl_bayar instanceof \DateTimeInterface) {
-                $tagihan_val = (int)$tgl_bayar->format('d'); // Ambil tanggalnya saja
+                $tagihan_val = $tgl_bayar->format('Y-m-d');
             } elseif (is_string($tgl_bayar)) {
                 $tgl_bayar = trim($tgl_bayar);
                 if (is_numeric($tgl_bayar)) {
-                    $tagihan_val = (int)$tgl_bayar;
+                    $day = (int)$tgl_bayar;
+                    $safeDay = min($day, $today->daysInMonth);
+                    $tagihan_val = $today->copy()->setDay($safeDay)->format('Y-m-d');
                 } else {
                     try {
                         $parsedDate = \Carbon\Carbon::parse(str_replace('/', '-', $tgl_bayar));
-                        $tagihan_val = (int)$parsedDate->format('d');
+                        $tagihan_val = $parsedDate->format('Y-m-d');
                     } catch (\Exception $e) {
                         $tagihan_val = null;
                     }

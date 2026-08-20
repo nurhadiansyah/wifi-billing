@@ -33,7 +33,19 @@ class CustomersImport implements ToCollection, WithHeadingRow
                 'password'        => bcrypt('pelanggan123'), 
                 'role'            => 'client',
                 'status'          => 'aktif',
-                'tanggal_tagihan' => $row['tanggal_tagihan'] ?? 1,
+                'tanggal_tagihan' => (function() use ($row) {
+                    $tgl = $row['tanggal_tagihan'] ?? 1;
+                    $today = \Carbon\Carbon::today();
+                    if (is_numeric($tgl)) {
+                        $safeDay = min((int)$tgl, $today->daysInMonth);
+                        return $today->copy()->setDay($safeDay)->format('Y-m-d');
+                    }
+                    try {
+                        return \Carbon\Carbon::parse($tgl)->format('Y-m-d');
+                    } catch (\Exception $e) {
+                        return $today->format('Y-m-d');
+                    }
+                })(),
                 'router_user'     => $row['user'],
                 'router_password' => $row['password'],
                 'router_profile'  => $row['profile'],
